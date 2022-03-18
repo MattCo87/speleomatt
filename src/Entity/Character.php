@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CharacterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -58,6 +60,16 @@ class Character
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="characters")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CharacterFormation::class, mappedBy="characters")
+     */
+    private $characterFormations;
+
+    public function __construct()
+    {
+        $this->characterFormations = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -157,6 +169,36 @@ class Character
     public function setUser(?user $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterFormation>
+     */
+    public function getCharacterFormations(): Collection
+    {
+        return $this->characterFormations;
+    }
+
+    public function addCharacterFormation(CharacterFormation $characterFormation): self
+    {
+        if (!$this->characterFormations->contains($characterFormation)) {
+            $this->characterFormations[] = $characterFormation;
+            $characterFormation->setCharacters($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterFormation(CharacterFormation $characterFormation): self
+    {
+        if ($this->characterFormations->removeElement($characterFormation)) {
+            // set the owning side to null (unless already changed)
+            if ($characterFormation->getCharacters() === $this) {
+                $characterFormation->setCharacters(null);
+            }
+        }
 
         return $this;
     }

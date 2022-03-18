@@ -29,9 +29,15 @@ class Formation
      */
     private $fights;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CharacterFormation::class, mappedBy="formations")
+     */
+    private $characterFormations;
+
     public function __construct()
     {
         $this->fights = new ArrayCollection();
+        $this->characterFormations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,6 +77,36 @@ class Formation
     public function removeFight(fight $fight): self
     {
         $this->fights->removeElement($fight);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterFormation>
+     */
+    public function getCharacterFormations(): Collection
+    {
+        return $this->characterFormations;
+    }
+
+    public function addCharacterFormation(CharacterFormation $characterFormation): self
+    {
+        if (!$this->characterFormations->contains($characterFormation)) {
+            $this->characterFormations[] = $characterFormation;
+            $characterFormation->setFormations($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterFormation(CharacterFormation $characterFormation): self
+    {
+        if ($this->characterFormations->removeElement($characterFormation)) {
+            // set the owning side to null (unless already changed)
+            if ($characterFormation->getFormations() === $this) {
+                $characterFormation->setFormations(null);
+            }
+        }
 
         return $this;
     }
