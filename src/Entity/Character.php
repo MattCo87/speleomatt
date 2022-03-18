@@ -66,9 +66,15 @@ class Character
      */
     private $characterFormations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CharacterStrategy::class, mappedBy="characters")
+     */
+    private $characterStrategies;
+
     public function __construct()
     {
         $this->characterFormations = new ArrayCollection();
+        $this->characterStrategies = new ArrayCollection();
     }
 
 
@@ -197,6 +203,36 @@ class Character
             // set the owning side to null (unless already changed)
             if ($characterFormation->getCharacters() === $this) {
                 $characterFormation->setCharacters(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterStrategy>
+     */
+    public function getCharacterStrategies(): Collection
+    {
+        return $this->characterStrategies;
+    }
+
+    public function addCharacterStrategy(CharacterStrategy $characterStrategy): self
+    {
+        if (!$this->characterStrategies->contains($characterStrategy)) {
+            $this->characterStrategies[] = $characterStrategy;
+            $characterStrategy->setCharacters($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterStrategy(CharacterStrategy $characterStrategy): self
+    {
+        if ($this->characterStrategies->removeElement($characterStrategy)) {
+            // set the owning side to null (unless already changed)
+            if ($characterStrategy->getCharacters() === $this) {
+                $characterStrategy->setCharacters(null);
             }
         }
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Action
      * @ORM\Column(type="integer")
      */
     private $power;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ActionStatregy::class, mappedBy="actions")
+     */
+    private $actionStatregies;
+
+    public function __construct()
+    {
+        $this->actionStatregies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,36 @@ class Action
     public function setPower(int $power): self
     {
         $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ActionStatregy>
+     */
+    public function getActionStatregies(): Collection
+    {
+        return $this->actionStatregies;
+    }
+
+    public function addActionStatregy(ActionStatregy $actionStatregy): self
+    {
+        if (!$this->actionStatregies->contains($actionStatregy)) {
+            $this->actionStatregies[] = $actionStatregy;
+            $actionStatregy->setActions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActionStatregy(ActionStatregy $actionStatregy): self
+    {
+        if ($this->actionStatregies->removeElement($actionStatregy)) {
+            // set the owning side to null (unless already changed)
+            if ($actionStatregy->getActions() === $this) {
+                $actionStatregy->setActions(null);
+            }
+        }
 
         return $this;
     }
