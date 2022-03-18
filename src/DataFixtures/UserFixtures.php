@@ -7,9 +7,12 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixture extends Fixture
+class UserFixtures
+extends Fixture
+implements OrderedFixtureInterface
 {
     private $encoder;
 
@@ -25,7 +28,10 @@ class UserFixture extends Fixture
         $admin->setPseudo('Mr X')
             ->setEmail('87700p@gmail.com')
             ->setPassword($this->encoder->encodePassword($admin, 'admin'))
-            ->setRoles(['ROLE_ADMIN']);
+            ->setRoles(['ROLE_ADMIN'])
+            ->setExperience(1000);
+
+        $this->addReference('admin', $admin);
 
         $manager->persist($admin);
 
@@ -33,8 +39,10 @@ class UserFixture extends Fixture
         $matt->setPseudo('Lord Aixois')
             ->setEmail('87700a@gmail.com')
             ->setPassword($this->encoder->encodePassword($matt, 'matthieu'))
-            ->setRoles(['ROLE_USER']);
+            ->setRoles(['ROLE_USER'])
+            ->setExperience(1);
 
+        $this->addReference('matt', $matt);
         $manager->persist($matt);
 
         $manager->flush();
