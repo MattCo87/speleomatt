@@ -23,7 +23,7 @@ class CharacterFormation
     private $characters;
 
     /**
-     * @ORM\ManyToOne(targetEntity=formation::class, inversedBy="characterFormations")
+     * @ORM\ManyToOne(targetEntity=Formation::class, inversedBy="characterFormations")
      */
     private $formations;
 
@@ -54,12 +54,12 @@ class CharacterFormation
         return $this;
     }
 
-    public function getFormations(): ?formation
+    public function getFormations(): ?Formation
     {
         return $this->formations;
     }
 
-    public function setFormations(?formation $formations): self
+    public function setFormations(?Formation $formations): self
     {
         $this->formations = $formations;
 
