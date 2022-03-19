@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ActionStatregyRepository;
+use App\Repository\ActionStrategyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ActionStatregyRepository::class)
+ * @ORM\Entity(repositoryClass=ActionStrategyRepository::class)
  */
-class ActionStatregy
+class ActionStrategy
 {
     /**
      * @ORM\Id
@@ -18,12 +18,12 @@ class ActionStatregy
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=action::class, inversedBy="actionStatregies")
+     * @ORM\ManyToOne(targetEntity=action::class, inversedBy="actionStrategies",cascade={"persist"})
      */
     private $actions;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Strategy::class, inversedBy="actionStatregies")
+     * @ORM\ManyToOne(targetEntity=Strategy::class, inversedBy="actionStrategies",cascade={"persist"})
      */
     private $strategies;
 

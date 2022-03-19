@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\ActionStatregy;
+use App\Entity\ActionStrategy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method ActionStatregy|null find($id, $lockMode = null, $lockVersion = null)
- * @method ActionStatregy|null findOneBy(array $criteria, array $orderBy = null)
- * @method ActionStatregy[]    findAll()
- * @method ActionStatregy[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ActionStrategy|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ActionStrategy|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ActionStrategy[]    findAll()
+ * @method ActionStrategy[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ActionStatregyRepository extends ServiceEntityRepository
+class ActionStrategyRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ActionStatregy::class);
+        parent::__construct($registry, ActionStrategy::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(ActionStatregy $entity, bool $flush = true): void
+    public function add(ActionStrategy $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class ActionStatregyRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(ActionStatregy $entity, bool $flush = true): void
+    public function remove(ActionStrategy $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +46,7 @@ class ActionStatregyRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return ActionStatregy[] Returns an array of ActionStatregy objects
+    //  * @return ActionStrategy[] Returns an array of ActionStrategy objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class ActionStatregyRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ActionStatregy
+    public function findOneBySomeField($value): ?ActionStrategy
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

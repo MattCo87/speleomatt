@@ -25,9 +25,9 @@ class Strategy
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=ActionStatregy::class, mappedBy="strategies")
+     * @ORM\OneToMany(targetEntity=ActionStrategy::class, mappedBy="strategies")
      */
-    private $actionStatregies;
+    private $actionStrategies;
 
     /**
      * @ORM\OneToMany(targetEntity=CharacterStrategy::class, mappedBy="strategies")
@@ -36,7 +36,7 @@ class Strategy
 
     public function __construct()
     {
-        $this->actionStatregies = new ArrayCollection();
+        $this->actionStrategies = new ArrayCollection();
         $this->characterStrategies = new ArrayCollection();
     }
 
@@ -58,29 +58,29 @@ class Strategy
     }
 
     /**
-     * @return Collection<int, ActionStatregy>
+     * @return Collection<int, ActionStrategy>
      */
     public function getActionStatregies(): Collection
     {
-        return $this->actionStatregies;
+        return $this->actionStrategies;
     }
 
-    public function addActionStatregy(ActionStatregy $actionStatregy): self
+    public function addActionStrategy(ActionStrategy $actionStrategy): self
     {
-        if (!$this->actionStatregies->contains($actionStatregy)) {
-            $this->actionStatregies[] = $actionStatregy;
-            $actionStatregy->setStrategies($this);
+        if (!$this->actionStrategies->contains($actionStrategy)) {
+            $this->actionStrategies[] = $actionStrategy;
+            $actionStrategy->setStrategies($this);
         }
 
         return $this;
     }
 
-    public function removeActionStatregy(ActionStatregy $actionStatregy): self
+    public function removeActionStrategy(ActionStrategy $actionStrategy): self
     {
-        if ($this->actionStatregies->removeElement($actionStatregy)) {
+        if ($this->actionStrategies->removeElement($actionStrategy)) {
             // set the owning side to null (unless already changed)
-            if ($actionStatregy->getStrategies() === $this) {
-                $actionStatregy->setStrategies(null);
+            if ($actionStrategy->getStrategies() === $this) {
+                $actionStrategy->setStrategies(null);
             }
         }
 

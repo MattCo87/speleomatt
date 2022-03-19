@@ -30,13 +30,13 @@ class Action
     private $power;
 
     /**
-     * @ORM\OneToMany(targetEntity=ActionStatregy::class, mappedBy="actions")
+     * @ORM\OneToMany(targetEntity=ActionStrategy::class, mappedBy="actions")
      */
-    private $actionStatregies;
+    private $actionStrategies;
 
     public function __construct()
     {
-        $this->actionStatregies = new ArrayCollection();
+        $this->actionStrategies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,29 +69,29 @@ class Action
     }
 
     /**
-     * @return Collection<int, ActionStatregy>
+     * @return Collection<int, ActionStrategy>
      */
     public function getActionStatregies(): Collection
     {
-        return $this->actionStatregies;
+        return $this->actionStrategies;
     }
 
-    public function addActionStatregy(ActionStatregy $actionStatregy): self
+    public function addActionStrategy(ActionStrategy $actionStrategy): self
     {
-        if (!$this->actionStatregies->contains($actionStatregy)) {
-            $this->actionStatregies[] = $actionStatregy;
-            $actionStatregy->setActions($this);
+        if (!$this->actionStrategies->contains($actionStrategy)) {
+            $this->actionStrategies[] = $actionStrategy;
+            $actionStrategy->setActions($this);
         }
 
         return $this;
     }
 
-    public function removeActionStatregy(ActionStatregy $actionStatregy): self
+    public function removeActionStrategy(ActionStrategy $actionStrategy): self
     {
-        if ($this->actionStatregies->removeElement($actionStatregy)) {
+        if ($this->actionStrategies->removeElement($actionStrategy)) {
             // set the owning side to null (unless already changed)
-            if ($actionStatregy->getActions() === $this) {
-                $actionStatregy->setActions(null);
+            if ($actionStrategy->getActions() === $this) {
+                $actionStrategy->setActions(null);
             }
         }
 
