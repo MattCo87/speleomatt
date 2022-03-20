@@ -8105,7 +8105,12 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+<<<<<<< HEAD
                     "Doctrine\\Common\\DataFixtures\\": "lib/Doctrine/Common/DataFixtures"
+=======
+                    "Doctrine\\Common\\DataFixtures\\": "/vendor/doctrine/doctrine-fixtures-bundle/"
+
+>>>>>>> entity
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -8179,7 +8184,13 @@
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
+<<<<<<< HEAD
                     "Doctrine\\Bundle\\FixturesBundle\\": ""
+=======
+                    "Doctrine\\Bundle\\FixturesBundle\\": "/vendor/doctrine/doctrine-fixtures-bundle/"
+                    
+                    
+>>>>>>> entity
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
