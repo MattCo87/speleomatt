@@ -45,6 +45,27 @@ implements OrderedFixtureInterface
         $this->addReference('matt', $matt);
         $manager->persist($matt);
 
+        $krikri = new User();
+        $krikri->setPseudo('Krikri')
+            ->setEmail('87700k@gmail.com')
+            ->setPassword($this->encoder->encodePassword($matt, 'krikri'))
+            ->setRoles(['ROLE_USER'])
+            ->setExperience(1);
+
+        $this->addReference('krikri', $krikri);
+        $manager->persist($krikri);
+
+        $test = new User();
+        $test->setPseudo('Test')
+            ->setEmail('87700t@gmail.com')
+            ->setPassword($this->encoder->encodePassword($test, 'test'))
+            ->setRoles(['ROLE_USER'])
+            ->setExperience(1);
+
+        $this->addReference('test', $test);
+        $manager->persist($test);
+
+
         $manager->flush();
     }
 

@@ -30,7 +30,7 @@ class Formation
     private $fights;
 
     /**
-     * @ORM\OneToMany(targetEntity=CharacterFormation::class, mappedBy="formations")
+     * @ORM\OneToMany(targetEntity=CharacterFormation::class, mappedBy="formations",cascade={"persist"})
      */
     private $characterFormations;
 
@@ -38,6 +38,11 @@ class Formation
     {
         $this->fights = new ArrayCollection();
         $this->characterFormations = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int

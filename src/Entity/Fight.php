@@ -30,7 +30,7 @@ class Fight
     private $createdat;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="fights")
+     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="fights",cascade={"persist"})
      */
     private $formations;
 

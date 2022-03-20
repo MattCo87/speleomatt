@@ -88,6 +88,49 @@ implements OrderedFixtureInterface
                 unset($characterStrategy);
             }
         }
+
+        // On implémente les characterStrategy de 'krikri'
+        for ($i = 24; $i <= 28; $i++) {
+            // Pour les 5 persos
+            $var_character = 'character' . $i;
+
+            for ($j = 1; $j <= 4; $j++) {
+                // On choisit une stratégie aléatoire de 1 à 10
+                $alea = rand(1, 10);
+                $var_strategy = 'strategy' . $alea;
+
+                $characterStrategy = new CharacterStrategy();
+                $characterStrategy->setCharacters($this->getReference($var_character))
+                    ->setStrategies($this->getReference($var_strategy))
+                    ->setPositionStrategie($j);
+
+                $manager->persist($characterStrategy);
+                $manager->flush();
+                unset($characterStrategy);
+            }
+        }
+
+        // On implémente les characterStrategy de 'test'
+        for ($i = 29; $i <= 33; $i++) {
+            // Pour les 5 persos
+            $var_character = 'character' . $i;
+
+            for ($j = 1; $j <= 4; $j++) {
+                // On choisit une stratégie aléatoire de 1 à 10
+                $alea = rand(1, 10);
+                $var_strategy = 'strategy' . $alea;
+
+                $characterStrategy = new CharacterStrategy();
+                $characterStrategy->setCharacters($this->getReference($var_character))
+                    ->setStrategies($this->getReference($var_strategy))
+                    ->setPositionStrategie($j);
+
+                $manager->persist($characterStrategy);
+                $manager->flush();
+                unset($characterStrategy);
+            }
+        }
+
     }
 
     public function getOrder()

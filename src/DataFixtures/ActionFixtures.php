@@ -43,7 +43,6 @@ implements OrderedFixtureInterface
             $action = new Action();
             $action->setName($a)
                 ->setPower($b);
-            //->setUser($this->getReference($h));
             $manager->persist($action);
             $this->addReference('action' . $z, $action);
         }

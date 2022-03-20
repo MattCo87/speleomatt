@@ -45,7 +45,25 @@ implements OrderedFixtureInterface
             ['Kaplopi', '1', '50', '70', '30', '50', 0, 'matt'],
             ['Lovdisc', '1', '80', '30', '30', '50', 0, 'matt'],
         ];
-        $tabCharac = array_merge($tabCharacModel, $tabCharacMonster, $tabCharacMatt);
+
+        $tabCharacKrikri = [
+            ['Ecclès', '1', '80', '15', '60', '80', 0, 'krikri'],
+            ['Milly', '1', '50', '50', '50', '50', 0, 'krikri'],
+            ['Kaplopi', '1', '50', '70', '30', '50', 0, 'krikri'],
+            ['Pifou', '1', '35', '70', '60', '50', 0, 'krikri'],
+            ['Lovdisc', '1', '80', '30', '30', '50', 0, 'krikri'],
+        ];
+
+        $tabCharacTest = [
+            ['Lovdisc', '1', '80', '30', '30', '50', 0, 'test'],
+            ['Rat des Mines', '1', '25', '25', '25', '25', 0, 'test'],
+            ['Ver Luisant', '1', '35', '35', '35', '35', 0, 'test'],
+            ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 0, 'test'],
+            ['Salamandre Enragée', '75', '75', '75', '75', '75', 0, 'test'],
+        ];
+
+
+        $tabCharac = array_merge($tabCharacModel, $tabCharacMonster, $tabCharacMatt, $tabCharacKrikri, $tabCharacTest);
 
         $z = 0;
         foreach ($tabCharac as list($a, $b, $c, $d, $e, $f, $g, $h)) {
