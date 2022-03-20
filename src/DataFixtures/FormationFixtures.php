@@ -46,10 +46,14 @@ implements OrderedFixtureInterface
             // Pour les 5 persos
             $var_character = 'character' . $i;
 
+            $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
+            $var_positionCharacter = array_rand($tabPositionCharacter, 1);
+            $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
+
             $characterFormation = new CharacterFormation();
             $characterFormation->setCharacters($this->getReference($var_character))
                 ->setFormations($this->getReference('formation5'))
-                ->setPositionCharacter('une position du perso');
+                ->setPositionCharacter($var_positionCharacter);
 
             $manager->persist($characterFormation);
             $manager->flush();
@@ -63,10 +67,14 @@ implements OrderedFixtureInterface
             $alea = rand(14, 18);
             $var_character = 'character' . $alea;
 
+            $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
+            $var_positionCharacter = array_rand($tabPositionCharacter, 1);
+            $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
+
             $characterFormation = new CharacterFormation();
             $characterFormation->setCharacters($this->getReference($var_character))
                 ->setFormations($this->getReference('formation7'))
-                ->setPositionCharacter('une position du perso');
+                ->setPositionCharacter($var_positionCharacter);
 
             $manager->persist($characterFormation);
             $manager->flush();
