@@ -49,8 +49,7 @@ implements OrderedFixtureInterface
             $characterFormation = new CharacterFormation();
             $characterFormation->setCharacters($this->getReference($var_character))
                 ->setFormations($this->getReference('formation5'))
-                ->setPositionCharacter('une position du perso')
-                ->setStrategyUser('une donnée qui ne sert à rien !');
+                ->setPositionCharacter('une position du perso');
 
             $manager->persist($characterFormation);
             $manager->flush();
@@ -61,13 +60,13 @@ implements OrderedFixtureInterface
         // On implémente les characterFormation de 'admin'
         for ($i = 14; $i <= 18; $i++) {
             // Pour les 5 persos
-            $var_character = 'character' . $i;
+            $alea = rand(14, 18);
+            $var_character = 'character' . $alea;
 
             $characterFormation = new CharacterFormation();
             $characterFormation->setCharacters($this->getReference($var_character))
                 ->setFormations($this->getReference('formation7'))
-                ->setPositionCharacter('une position du perso')
-                ->setStrategyUser('une donnée qui ne sert à rien !');
+                ->setPositionCharacter('une position du perso');
 
             $manager->persist($characterFormation);
             $manager->flush();
@@ -75,7 +74,7 @@ implements OrderedFixtureInterface
         }
         // ******************************************************************************************************************************
 
- 
+
     }
 
     public function getOrder()

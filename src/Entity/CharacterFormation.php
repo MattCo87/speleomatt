@@ -32,11 +32,6 @@ class CharacterFormation
      */
     private $positionCharacter;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $strategyUser;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -74,18 +69,6 @@ class CharacterFormation
     public function setPositionCharacter(string $positionCharacter): self
     {
         $this->positionCharacter = $positionCharacter;
-
-        return $this;
-    }
-
-    public function getStrategyUser(): ?string
-    {
-        return $this->strategyUser;
-    }
-
-    public function setStrategyUser(string $strategyUser): self
-    {
-        $this->strategyUser = $strategyUser;
 
         return $this;
     }
