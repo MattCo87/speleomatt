@@ -18,7 +18,7 @@ class CharacterFormation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=character::class, inversedBy="characterFormations")
+     * @ORM\ManyToOne(targetEntity=Character::class, inversedBy="characterFormations")
      */
     private $characters;
 
@@ -37,12 +37,12 @@ class CharacterFormation
         return $this->id;
     }
 
-    public function getCharacters(): ?character
+    public function getCharacters(): ?Character
     {
         return $this->characters;
     }
 
-    public function setCharacters(?character $characters): self
+    public function setCharacters(?Character $characters): self
     {
         $this->characters = $characters;
 

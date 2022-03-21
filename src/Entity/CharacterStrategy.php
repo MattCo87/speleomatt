@@ -23,7 +23,7 @@ class CharacterStrategy
     private $characters;
 
     /**
-     * @ORM\ManyToOne(targetEntity=strategy::class, inversedBy="characterStrategies")
+     * @ORM\ManyToOne(targetEntity=Strategy::class, inversedBy="characterStrategies")
      */
     private $strategies;
 
@@ -49,12 +49,12 @@ class CharacterStrategy
         return $this;
     }
 
-    public function getStrategies(): ?strategy
+    public function getStrategies(): ?Strategy
     {
         return $this->strategies;
     }
 
-    public function setStrategies(?strategy $strategies): self
+    public function setStrategies(?Strategy $strategies): self
     {
         $this->strategies = $strategies;
 

@@ -57,7 +57,7 @@ class Character
     private $ispremade;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="characters")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="characters")
      */
     private $user;
 
@@ -167,12 +167,12 @@ class Character
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
