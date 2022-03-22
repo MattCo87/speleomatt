@@ -82,4 +82,5 @@ class PlayController extends AbstractController
             'strategies1' => $strategies1,
         ]);
     }
+
 }

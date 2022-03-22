@@ -13,20 +13,22 @@
 					</a>
 
 				</li>
-				<li></li>
 				<li>
 					<a href="{{path('app_logout')}}" title="Déconnexion">Au revoir
 						{{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }}
 						!</a>
 				</li>
-
-			</li>
-		</ul>
+			</ul>
+		</div>
 	</header>
 
 
 	<main>
 		<h2>{{ fight.log }}</h2>
-<!--		{% include './play/team_description.html.twig' %} -->
+		<!--
+		{% include './play/team_description.html.twig' %}
+		<hr>
+		-->
+		{% include './play/MCM/moteur/index.php' %}
 	</main>
 {% endblock %}
