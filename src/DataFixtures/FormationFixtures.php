@@ -16,22 +16,26 @@ implements OrderedFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $tabFormation = [
-            ['Bersekers'],
-            ['Explorers'],
-            ['Sneak team'],
-            ['Snipers'],
-            ['SpeleoBoyz'],
-            ['Justice league'],
-            ['JYM'],
-            ['ArcheoWinners'],
-            ['Gunners'],
+            ['Bersekers',''],
+            ['Explorers','test'],
+            ['Sneak team',''],
+            ['Snipers',''],
+            ['SpeleoBoyz','matt'],
+            ['Justice league',''],
+            ['JYM','admin'],
+            ['ArcheoWinners','krikri'],
+            ['Gunners',''],
         ];
 
         $z = 0;
-        foreach ($tabFormation as list($a)) {
+        foreach ($tabFormation as list($a, $b)) {
             $z++;
             $formation = new Formation();
             $formation->setName($a);
+
+            if($b){
+                $formation->setUser($this->getReference($b));
+            }
 
             $manager->persist($formation);
             $this->addReference('formation' . $z, $formation);
@@ -73,7 +77,7 @@ implements OrderedFixtureInterface
 
             $characterFormation = new CharacterFormation();
             $characterFormation->setCharacters($this->getReference($var_character))
-                ->setFormations($this->getReference('formation5'))
+                ->setFormations($this->getReference('formation8'))
                 ->setPositionCharacter($var_positionCharacter);
 
             $manager->persist($characterFormation);
@@ -94,7 +98,7 @@ implements OrderedFixtureInterface
 
             $characterFormation = new CharacterFormation();
             $characterFormation->setCharacters($this->getReference($var_character))
-                ->setFormations($this->getReference('formation5'))
+                ->setFormations($this->getReference('formation2'))
                 ->setPositionCharacter($var_positionCharacter);
 
             $manager->persist($characterFormation);

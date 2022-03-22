@@ -18,7 +18,7 @@ class ActionStrategy
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=action::class, inversedBy="actionStrategies",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Action::class, inversedBy="actionStrategies",cascade={"persist"})
      */
     private $actions;
 
@@ -37,12 +37,12 @@ class ActionStrategy
         return $this->id;
     }
 
-    public function getActions(): ?action
+    public function getActions(): ?Action
     {
         return $this->actions;
     }
 
-    public function setActions(?action $actions): self
+    public function setActions(?Action $actions): self
     {
         $this->actions = $actions;
 

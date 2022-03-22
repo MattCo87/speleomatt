@@ -34,6 +34,11 @@ class Formation
      */
     private $characterFormations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="formations")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->fights = new ArrayCollection();
@@ -112,6 +117,18 @@ class Formation
                 $characterFormation->setFormations(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
