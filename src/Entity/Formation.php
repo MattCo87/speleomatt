@@ -25,7 +25,7 @@ class Formation
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=fight::class, inversedBy="formations")
+     * @ORM\ManyToMany(targetEntity=Fight::class, inversedBy="formations")
      */
     private $fights;
 
@@ -68,14 +68,14 @@ class Formation
     }
 
     /**
-     * @return Collection<int, fight>
+     * @return Collection<int, Fight>
      */
     public function getFights(): Collection
     {
         return $this->fights;
     }
 
-    public function addFight(fight $fight): self
+    public function addFight(Fight $fight): self
     {
         if (!$this->fights->contains($fight)) {
             $this->fights[] = $fight;
@@ -84,7 +84,7 @@ class Formation
         return $this;
     }
 
-    public function removeFight(fight $fight): self
+    public function removeFight(Fight $fight): self
     {
         $this->fights->removeElement($fight);
 

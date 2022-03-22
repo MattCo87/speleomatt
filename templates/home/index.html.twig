@@ -19,10 +19,16 @@
 
 	<div class="example-wrapper">
 		<h1>Spéléonautes</h1>
-<!--
-		<ul>
-			<li><ahref="{{'C:/Users/87700/Desktop/speleomatt/src/Controller/HomeController.php'|file_link(0)}}"></a></li>
-			<li><ahref="{{'C:/Users/87700/Desktop/speleomatt/templates/home/index.html.twig'|file_link(0)}}"></a></li>
-		</ul>  -->
+		
+				<ul>	
+									<li>
+					            <a href="{{ path('app_play') }}" title="Jouer"> Jouer  </a>
+					
+					</li>
+					<li>
+					            <a href="{{ path('app_logout') }}" title="Déconnexion"> Déconnexion  </a>
+					
+					</li>
+				</ul> 
 	</div>
 {% endblock %}

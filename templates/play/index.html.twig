@@ -18,6 +18,22 @@
 	</style>
 
 	<div class="example-wrapper">
+		<ul>
+			<li>
+				<a href="{{ path('app_home') }}" title="Jouer">
+					Accueil
+				</a>
+
+			</li>
+			<li>
+				<a href="{{ path('app_logout') }}" title="Déconnexion">
+					Déconnexion
+				</a>
+
+			</li>
+		</ul>
+
+
 		<h2>{{ fight.log }}</h2>
 		<ul>
 			<li>{{ formation0.name }}</li>
@@ -32,14 +48,16 @@
 					<ul>
 						{% for strategy in strategies0[i] %}
 							<li>
-								{{ strategy.strategies.name }} (N°: {{ strategy.strategies.id }})
+								{{ strategy.strategies.name }}
+								(N°:
+								{{ strategy.strategies.id }})
 							</li>
 						{% endfor %}
 					</ul>
 					{% set i = i + 1 %}
 				{% endfor %}
 			</ul>
-	
+
 			<li>{{ formation1.name }}</li>
 			<ul>
 				{% set i = 0 %}
@@ -52,7 +70,9 @@
 					<ul>
 						{% for strategy in strategies1[i] %}
 							<li>
-								{{ strategy.strategies.name }} (N°: {{ strategy.strategies.id }})
+								{{ strategy.strategies.name }}
+								(N°:
+								{{ strategy.strategies.id }})
 							</li>
 						{% endfor %}
 					</ul>
