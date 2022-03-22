@@ -1,3 +1,43 @@
-body {
-    background-color: lightgray;
+a {
+    text-decoration: none;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+header,
+footer {
+    background-color: grey;
+}
+
+main {
+    height: 75%;
+}
+
+.divcenter {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.ulnav {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+li {
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+td {
+    text-align: center;
+    width: 10rem;
 }
