@@ -18,6 +18,18 @@
 		{% endif %}
 
 		<h1 class="h3 mb-3 font-weight-normal">Spéléonautes</h1>
+
+		<div class="marque-ver">
+			<div class="msg">
+				L'effondrement a eu lieu il y a plus de mille ans. La Fosse a tout pris, la mine, les villages autour, les hommes et femmes qui y travaillaient. Mais les profondeurs de celle-ci ont révélé une richesse fabuleuse, une richesse que seuls les plus téméraires ont su s'approprier.
+				<br>
+				Le gouffre, dont la fin n'a jamais pu être mesurée, se trouve au milieu d'une plaine désertée du grand continent Kyanos. Une population de téméraires aventuriers, les Spéléonautes, réside sur son pourtour depuis de nombreuses générations, après la catastrophe qui a causé son apparition et les découvertes extraordinaires qui s'ensuivirent.
+				<br>
+				Les Spéléonautes sont prêts à tout pour affronter la Fosse et en remonter des artefacts puissants, issus des civilisations du passé. Les Lanternes Blanches, les plus connus d'entre eux, sont devenus des légendes vivantes, les premiers à avoir découvert la Géode (ou grande salle) de la Verna, et a en être revenus vivants.
+			</div>
+		</div>
+
+
 		<h2>Bienvenue dans le gouffre: mais d'abord présente toi, aventurier :</h2>
 		<div class="divcenter">
 			<label for="inputEmail">Email</label>
@@ -31,8 +43,8 @@
 
 
 			<!--		Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-								        See https://symfony.com/doc/current/security/remember_me.html
-			-->
+																	        See https://symfony.com/doc/current/security/remember_me.html
+												-->
 			<div class="checkbox mb-3">
 				<label>
 					<input type="checkbox" name="_remember_me">
@@ -45,8 +57,9 @@
 				Entrer
 			</button>
 		</div>
-        <div class="divcenter">
-        <h2> Ou inscris toi:</h2>
-        <a href="{{path('app_register')}}" title="Inscription">Rejoins nous par ici !</a>
-	</form>
-{% endblock %}
+		<div class="divcenter">
+			<h2>
+				Ou inscris toi:</h2>
+			<a href="{{path('app_register')}}" title="Inscription">Rejoins nous par ici !</a>
+		</form>
+	{% endblock %}
