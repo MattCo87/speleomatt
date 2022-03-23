@@ -47,13 +47,15 @@ table {
 }
 
 td {
-
     text-align: center;
     width: 10rem;
 }
 
-
-
+.tdvs {
+    background-color: grey;
+    font-size: x-large;
+    text-align: center;
+}
 
 /* ---------------- */
 /* défilement vertical */

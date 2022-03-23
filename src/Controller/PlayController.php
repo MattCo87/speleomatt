@@ -8,6 +8,7 @@ use App\Entity\CharacterStrategy;
 use App\Entity\Fight;
 use App\Entity\Strategy;
 use App\Repository\CharacterRepository;
+use App\Repository\FightRepository;
 use App\Repository\FormationRepository;
 use Doctrine\ORM\Mapping\Id;
 use PhpParser\Node\Scalar\MagicConst\File;
@@ -23,9 +24,10 @@ class PlayController extends AbstractController
     /**
      * @Route("/play", name="app_play")
      */
-    public function index(): Response
+    public function index(FormationRepository $emf): Response
     {
         $fights = $this->getDoctrine()->getRepository(Fight::class)->findBy(['id' => 1]);
+        //$fights = $emf->findByFight(1);
 
         $tabFormation = $fights[0]->getFormations();
 

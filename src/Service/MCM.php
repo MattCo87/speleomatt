@@ -33,6 +33,19 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
 
     function locate($board)
     {
+
+
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                          INIT TABLEAUX                                                         *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
+
+
+
         // Tableau final de positionnement des personnages
         $tablocate = array(
             '', '', '',
@@ -69,6 +82,18 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
                     break;
             }
         }
+
+
+
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                     POSITIONNEMENT DES PERSOS                                                  *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
+
 
         // Pour chaque personnage du tableau passé en paramétre
         foreach ($board as $character) {
@@ -176,15 +201,22 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
             }
         }
 
-        /*
-    // On affiche la statégie de la formation
-    echo "<p>STRATEGY</p>";
-    echo "<p>" . var_dump($tabnblocalisation) . "</p><hr>";
-    */
 
         // On retourne le tableau des joueurs et leur placement sur la carte
         return $tablocate;
     }
+
+
+
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                          FUNCTION RELOCATE                                                     *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
+
 
 
     function rlocate($board)
@@ -208,6 +240,14 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
 
 
 
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+
+
+
 
     /* **************************************************************************************************************************
     /* **************************************************************************************************************************
@@ -218,111 +258,107 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
     /* **************************************************************************************************************************
     /* **************************************************************************************************************************/
 
+
+
     public function getMotor(FormationRepository $doctrine, CharacterRepository $emc)
     {
         // Fonction personnelle dans le FormationRepository
         $req_fight = $doctrine->findByFight(1);
-        //dd($req_fight);
 
+
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                       EQUIPE USER                                                              *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
         // Gestion de la formation challenger
+
         // On récupére la formation
-        $formation_num = intval($req_fight[0]);
+        $formation_num = $req_fight[0]['formation_id'];
+        // On récupére les ID des personnages de la formation
         $req_formation0 = $emc->findByFormation($formation_num);
-        //dd($req_formation0);
 
-
-
-        /*
-        // On récupére les personnages de la formation
-        foreach($req_formation0 as $var_character){
-            $unperso = $doctrine->findBy($var_character);
-
-            $characters = $unperso->getCharacters();
-            $heroes = $characters->getName();
-            
-
+        foreach ($req_formation0 as $var_character) {
+            // On récupére les infos du personnage de la formation
+            $unperso = $emc->find($var_character['characters_id']);
+            // On alimente le tableau temporaire contenant le nom des personnages de l'équipe des 'heroes'
+            $var_heroes[] = $unperso->getName();
         }
 
 
 
-        // Pour chaque personnage
-        foreach ($characters0 as $character) {
-            // On récupére l'id du personnage
-            $characters = $character->getCharacters();
-            $heroes = $characters->getName();
-        }
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                       EQUIPE ADMIN                                                             *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
+
 
         // Gestion de la formation adverse
         // On récupére la formation
-        $formation1 = $req_fight[1];
-        // On récupére les personnages de la formation
-        $characters1 = $formation1->getCharacterFormations();
+        $formation_num = $req_fight[1]['formation_id'];
+        // On récupére les ID des personnages de la formation
+        $req_formation1 = $emc->findByFormation($formation_num);
 
-        // Pour chaque personnage
-        foreach ($characters1 as $character) {
-            // On récupére le nom du personnage
-            $characters = $character->getCharacters();
-            $monsters = $characters->getName();
+        foreach ($req_formation1 as $var_character) {
+            // On récupére les infos du personnage de la formation
+            $unperso = $emc->find($var_character['characters_id']);
+            // On alimente le tableau temporaire contenant le nom des personnages de l'équipe des 'monsters'
+            $var_monsters[] = $unperso->getName();
         }
 
-        dd($heroes);
-        dd($monsters);
-        */
 
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                    ASSOCIATION DES DONNES                                                      *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
 
-
-
-
-
+    
+        // On associe le tableau des formations issues des fixtures + un random sur la position des joueurs (devant, milieu, derriere)
+        
         // Tableau des héros
         $heroes = array(
-            array('position' => 0, 'name' => 'Zabek', 'rapidity' => 12, 'alea' => 0, 'localisation' => 0),
-            array('position' => 0, 'name' => 'Torti', 'rapidity' => 14, 'alea' => 0, 'localisation' => 1),
-            array('position' => 0, 'name' => 'Milly', 'rapidity' => 18, 'alea' => 0, 'localisation' => 0),
-            array('position' => 0, 'name' => 'Cradou', 'rapidity' => 8, 'alea' => 0, 'localisation' => 2),
-            array('position' => 0, 'name' => 'Eccles', 'rapidity' => 20, 'alea' => 0, 'localisation' => 2),
+            array('position' => 0, 'name' => $var_heroes[0], 'rapidity' => 12, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_heroes[1], 'rapidity' => 14, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_heroes[2], 'rapidity' => 18, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_heroes[3], 'rapidity' => 8, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_heroes[4], 'rapidity' => 20, 'alea' => 0, 'localisation' => rand(0,2)),
         );
 
         // Tableau des monstres
         $monsters = array(
-            array('position' => 0, 'name' => 'Rat sanguinaire 1', 'rapidity' => 16, 'alea' => 0, 'localisation' => 0),
-            array('position' => 0, 'name' => 'Rat sanguinaire 2', 'rapidity' => 16, 'alea' => 0, 'localisation' => 1),
-            array('position' => 0, 'name' => 'Rat sanguinaire 3', 'rapidity' => 16, 'alea' => 0, 'localisation' => 0),
-            array('position' => 0, 'name' => 'Ver toxique 1', 'rapidity' => 10, 'alea' => 0, 'localisation' => 2),
-            array('position' => 0, 'name' => 'Ver toxique 2', 'rapidity' => 10, 'alea' => 0, 'localisation' => 2),
+            array('position' => 0, 'name' => $var_monsters[0], 'rapidity' => 16, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_monsters[1], 'rapidity' => 16, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_monsters[2], 'rapidity' => 16, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_monsters[3], 'rapidity' => 10, 'alea' => 0, 'localisation' => rand(0,2)),
+            array('position' => 0, 'name' => $var_monsters[4], 'rapidity' => 10, 'alea' => 0, 'localisation' => rand(0,2)),
         );
-        /*
-        // On initialise le plateau des heros à gauche
-        echo "<p>HEROES</p><hr>";
-        $heroeslocated = locate($heroes);
-        echo "<p>LOCATION</p>";
-        echo "<p>" . var_dump($heroeslocated) . "</p><hr>";
 
-        // On initialise le plateau des monstres à droite
-        echo "<p>MONSTERS</p><hr>";
-        $monsterslocated = rlocate($monsters);
-        echo "<p>LOCATION</p>";
-        echo "<p>" . var_dump($monsterslocated) . "</p><hr>";
-        */
 
+
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************
+    /* *****                                                                                                                *****
+    /* *****                                            INITIALISATION                                                      *****
+    /* *****                                                                                                                *****
+    /* *****                                                                                                                *****
+    /* **************************************************************************************************************************
+    /* **************************************************************************************************************************/
+        
         // On initialise le plateau de jeu
         $heroeslocated = $this->locate($heroes);
         $monsterslocated = $this->rlocate($monsters);
 
         return array_merge($heroeslocated, $monsterslocated);
-
-        /*
-        // Mise en place du plateau
-        echo "<p>BOARD GAME</p><hr>";
-        $boardgame = cboard(array_merge($heroeslocated, $monsterslocated));
-
-        
-        // On initialise la ligne de départ des personnages
-        echo "<p>START LINE</p><hr>";
-        $board = clienstart(draw(array_merge($heroes, $monsters)));
-        
-
-        return $boardgame;
-        */
     }
 }
