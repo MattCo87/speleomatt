@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spéléonautes
+{% endblock %}
+
+{% block body %}
+	<header>
+		<ul class="ulnav">
+			<li><a href="{{path('app_home')}}" title="Accueil">Accueil</a></li>
+			<li><a href="{{path('app_play')}}" title="Jouer">Jouer</a></li>
+			<li><a href="#">Stats</a></li>
+		</ul>
+	</header>
+	<main>
+		<div>
+			<h1>Spéléonautes</h1>
+			<h2>{{ message }}</h2>
+		</div>
+	</main>
+	<footer>
+		<ul class="ulnav">
+			<li><a href="#">Règles</a></li>
+			<li><a href="#">Mentions légales</a></li>
+			<li><a href="#">Qui sommes-nous?</a></li>
+		</ul>
+	</footer>
+{% endblock %}

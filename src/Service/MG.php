@@ -1,7 +1,7 @@
 <?
 namespace App\Service;
 
-class MessageGenerator
+class MG
 {
     public function getHappyMessage(): string
     {
