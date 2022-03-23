@@ -7,12 +7,16 @@ use App\Entity\CharacterFormation;
 use App\Entity\CharacterStrategy;
 use App\Entity\Fight;
 use App\Entity\Strategy;
+use App\Repository\CharacterRepository;
+use App\Repository\FormationRepository;
 use Doctrine\ORM\Mapping\Id;
 use PhpParser\Node\Scalar\MagicConst\File;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use App\Service\MCM;
+use Doctrine\Migrations\Configuration\EntityManager\ManagerRegistryEntityManager;
+use Doctrine\Persistence\ManagerRegistry;
 
 class PlayController extends AbstractController
 {
@@ -70,8 +74,6 @@ class PlayController extends AbstractController
             $strategies1[] = $this->getDoctrine()->getRepository(CharacterStrategy::class)->findBy(['characters' => $var_characters]);
         }
 
-
-
         return $this->render('play/index.html.twig', [
             'fight' => $fights[0],
             'formation0' => $formation0,
@@ -80,6 +82,22 @@ class PlayController extends AbstractController
             'characters1' => $characters1,
             'strategies0' => $strategies0,
             'strategies1' => $strategies1,
+        ]);
+    }
+
+    /**
+     * @Route("/play/board", name="app_play_board")
+     */
+
+    
+    public function board(FormationRepository $var_fight, CharacterRepository $var_character): Response
+    {
+
+        $motor = new MCM;
+        $board = $motor->getMotor($var_fight, $var_character);
+
+        return $this->render('play/board.html.twig', [
+            'board' => $board,
         ]);
     }
 

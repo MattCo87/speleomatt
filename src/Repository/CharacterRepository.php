@@ -45,6 +45,26 @@ class CharacterRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findByFormation($id_formation)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT characters_id
+            FROM character_formation c
+            WHERE c.formations_id = :id_formation
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['id_formation' => $id_formation]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+
+
     // /**
     //  * @return Character[] Returns an array of Character objects
     //  */

@@ -18,26 +18,5 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-
-
-
-    /**
-     * @Route("/home2", name="app_play_new")
-     */
-
-    
-    public function new(MG $messageGenerator): Response
-    {
-        // thanks to the type-hint, the container will instantiate a
-        // new MessageGenerator and pass it to you!
-        // ...
-
-        $message = $messageGenerator->getHappyMessage();
-        $this->addFlash('success', $message);
-        // ...
-        return $this->render('home/index2.html.twig', [
-            'message' => $message,
-        ]);
-    }
     
 }

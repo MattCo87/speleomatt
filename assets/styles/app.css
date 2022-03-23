@@ -42,13 +42,18 @@ li {
 
 table {
     width: 100%;
+    height: 30rem;
     border: 1px solid black;
 }
 
 td {
+
     text-align: center;
     width: 10rem;
 }
+
+
+
 
 /* ---------------- */
 /* défilement vertical */

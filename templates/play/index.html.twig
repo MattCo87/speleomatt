@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page de jeu
-{% endblock %}
+{% block title %}Page de jeu{% endblock %}
 
 {% block body %}
 	<header>
@@ -11,23 +10,20 @@
 					<a href="{{ path('app_home') }}" title="Jouer">
 						Accueil
 					</a>
-
 				</li>
 				<li>
-					<a href="{{path('app_logout')}}" title="Déconnexion">Au revoir
-						{{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }}
-						!</a>
+					<a href="{{ path('app_play_board') }}" title="Board">
+						Fight zone
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_logout')}}" title="Déconnexion">Au revoir {{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }} !</a>
 				</li>
 			</ul>
 		</div>
 	</header>
-
-
 	<main>
 		<h2>{{ fight.log }}</h2>
-		
 		{% include './play/team_description.html.twig' %}
-		<hr>
-		
 	</main>
 {% endblock %}
