@@ -1,9 +1,10 @@
 a {
-    color:brown;
+    color: brown;
     text-decoration: none;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
@@ -29,12 +30,19 @@ main {
     justify-content: space-between;
 }
 
+.ulfight {
+    border: 10px solid black;
+    display: flex;
+    justify-content: space-around;
+}
+
 li {
     text-decoration: none;
 }
 
 table {
     width: 100%;
+    height: 30rem;
     border: 1px solid black;
 }
 
@@ -42,3 +50,47 @@ td {
     text-align: center;
     width: 10rem;
 }
+
+.tdvs {
+    background-color: grey;
+    font-size: x-large;
+    text-align: center;
+}
+
+/* ---------------- */
+/* défilement vertical */
+.marque-ver {
+    position: relative;
+    max-width: 70em;
+    height: 15em;
+    margin: 2em auto;
+    border: 10px solid white;
+    overflow: hidden;
+}
+.marque-ver > div {
+    position: relative;
+    padding: 2em;
+    padding-top: 20em; /* meme que height du parent */
+    animation: defilement-ver 40s infinite linear;
+    cursor: pointer;
+}
+.marque-ver:hover > div {
+    animation-play-state: paused;
+}
+.msg {
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+.msg:first-letter {
+    font-weight: 700;
+    color: #f00;
+}
+@keyframes defilement-ver {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, -100%, 0);
+    }
+}
+/* ---------------- */

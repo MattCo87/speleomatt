@@ -1,0 +1,56 @@
+<div>
+	<ul class="ulfight ulnav">
+		<li>
+			{{ formation0.name }}
+			<p>
+				<ul>
+					{% set i = 0 %}
+					{% for character in characters0 %}
+						<li>
+							{{ character.characters.name }}
+							(N°{{ character.characters.id }}) (Position:
+							{{ character.positionCharacter }}) :
+						</li>
+						<ul>
+							{% for strategy in strategies0[i] %}
+								<li>
+									{{ strategy.strategies.name }}
+									(N°:
+									{{ strategy.strategies.id }})
+								</li>
+							{% endfor %}
+						</ul>
+						{% set i = i + 1 %}
+					{% endfor %}
+				</ul>
+			</p>
+		</li>
+
+
+		<li>
+			{{ formation1.name }}
+			<p>
+				<ul>
+					{% set i = 0 %}
+					{% for character in characters1 %}
+						<li>
+							{{ character.characters.name }}
+							(N°{{ character.characters.id }}) (Position:
+							{{ character.positionCharacter }}) :
+						</li>
+						<ul>
+							{% for strategy in strategies1[i] %}
+								<li>
+									{{ strategy.strategies.name }}
+									(N°:
+									{{ strategy.strategies.id }})
+								</li>
+							{% endfor %}
+						</ul>
+						{% set i = i + 1 %}
+					{% endfor %}
+				</ul>
+			</p>
+		</li>
+	</ul>
+</div>

@@ -36,6 +36,14 @@ implements OrderedFixtureInterface
                 $fight->addFormation($this->getReference('formation5'));
                 $fight->addFormation($this->getReference('formation7'));
             }
+            if ($z == 2) {
+                $fight->addFormation($this->getReference('formation5'));
+                $fight->addFormation($this->getReference('formation1'));
+            }
+            if ($z == 3) {
+                $fight->addFormation($this->getReference('formation5'));
+                $fight->addFormation($this->getReference('formation4'));
+            }
             $manager->persist($fight);
             $this->addReference('fight' . $z, $fight);
         }

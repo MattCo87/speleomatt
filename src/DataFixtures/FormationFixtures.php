@@ -16,15 +16,13 @@ implements OrderedFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $tabFormation = [
-            ['Bersekers',''],
-            ['Explorers','test'],
-            ['Sneak team',''],
-            ['Snipers',''],
-            ['SpeleoBoyz','matt'],
-            ['Justice league',''],
-            ['JYM','admin'],
-            ['ArcheoWinners','krikri'],
-            ['Gunners',''],
+            ['Bersekers', 'admin'],
+            ['Explorers', 'admin'],
+            ['Sneak team', 'admin'],
+            ['Snipers', 'admin'],
+            ['ArcheoWinners', 'admin'],
+            ['Gunners', 'admin'],
+            ['JYM', 'admin'],
         ];
 
         $z = 0;
@@ -33,7 +31,7 @@ implements OrderedFixtureInterface
             $formation = new Formation();
             $formation->setName($a);
 
-            if($b){
+            if ($b) {
                 $formation->setUser($this->getReference($b));
             }
 
@@ -45,86 +43,30 @@ implements OrderedFixtureInterface
         unset($z, $a);
 
         // ***************************************************************************************************************************
-        // On implémente les characterFormation de 'matt'
-        for ($i = 19; $i <= 23; $i++) {
-            // Pour les 5 persos
-            $var_character = 'character' . $i;
-
-            $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
-            $var_positionCharacter = array_rand($tabPositionCharacter, 1);
-            $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
-
-            $characterFormation = new CharacterFormation();
-            $characterFormation->setCharacters($this->getReference($var_character))
-                ->setFormations($this->getReference('formation5'))
-                ->setPositionCharacter($var_positionCharacter);
-
-            $manager->persist($characterFormation);
-            $manager->flush();
-            unset($characterFormation);
-        }
-        // ******************************************************************************************************************************
-
-        // ***************************************************************************************************************************
-        // On implémente les characterFormation de 'krikri'
-        for ($i = 24; $i <= 28; $i++) {
-            // Pour les 5 persos
-            $var_character = 'character' . $i;
-
-            $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
-            $var_positionCharacter = array_rand($tabPositionCharacter, 1);
-            $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
-
-            $characterFormation = new CharacterFormation();
-            $characterFormation->setCharacters($this->getReference($var_character))
-                ->setFormations($this->getReference('formation8'))
-                ->setPositionCharacter($var_positionCharacter);
-
-            $manager->persist($characterFormation);
-            $manager->flush();
-            unset($characterFormation);
-        }
-        // ******************************************************************************************************************************
-        
-        // ***************************************************************************************************************************
-        // On implémente les characterFormation de 'test'
-        for ($i = 29; $i <= 33; $i++) {
-            // Pour les 5 persos
-            $var_character = 'character' . $i;
-
-            $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
-            $var_positionCharacter = array_rand($tabPositionCharacter, 1);
-            $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
-
-            $characterFormation = new CharacterFormation();
-            $characterFormation->setCharacters($this->getReference($var_character))
-                ->setFormations($this->getReference('formation2'))
-                ->setPositionCharacter($var_positionCharacter);
-
-            $manager->persist($characterFormation);
-            $manager->flush();
-            unset($characterFormation);
-        }
-        // ******************************************************************************************************************************
         // ***************************************************************************************************************************
         // On implémente les characterFormation de 'admin'
-        for ($i = 14; $i <= 18; $i++) {
-            // Pour les 5 persos
-            $alea = rand(14, 18);
-            $var_character = 'character' . $alea;
 
-            $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
-            $var_positionCharacter = array_rand($tabPositionCharacter, 1);
-            $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
+        // Pour chaque formation
+        for ($j = 1; $j <= 7; $j++) {
+            $var_formation = 'formation' . $j;
+            for ($i = 14; $i <= 18; $i++) {
+                // Pour les 5 persos
+                $alea = rand(14, 18);
+                $var_character = 'character' . $alea;
 
-            $characterFormation = new CharacterFormation();
-            $characterFormation->setCharacters($this->getReference($var_character))
-                ->setFormations($this->getReference('formation7'))
-                ->setPositionCharacter($var_positionCharacter);
+                $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
+                $var_positionCharacter = array_rand($tabPositionCharacter, 1);
+                $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
 
-            $manager->persist($characterFormation);
-            $manager->flush();
-            unset($characterFormation);
+                $characterFormation = new CharacterFormation();
+                $characterFormation->setCharacters($this->getReference($var_character))
+                    ->setFormations($this->getReference($var_formation))
+                    ->setPositionCharacter($var_positionCharacter);
+
+                $manager->persist($characterFormation);
+                $manager->flush();
+                unset($characterFormation);
+            }
         }
         // ******************************************************************************************************************************
 

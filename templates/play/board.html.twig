@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fight zone
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div class="example-wrapper">
+			<div class="divcenter">
+				<h1>
+					<a href="{{ path('app_play') }}" title="Board">
+						Fight zone
+					</a>
+				</h1>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<table>
+			<tr>
+				<td>
+					{{ board[0] }}
+				</td>
+				<td>
+					{{ board[1] }}
+				</td>
+				<td>
+					{{ board[2] }}
+				</td>
+				<td class="tdvs">
+					V
+				</td>
+				<td>
+					{{ board[9] }}
+				</td>
+				<td>
+					{{ board[10] }}
+				</td>
+				<td>
+					{{ board[11] }}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{{ board[3] }}
+				</td>
+				<td>
+					{{ board[4] }}
+				</td>
+				<td>
+					{{ board[5] }}
+				</td>
+				<td class="tdvs">
+					/
+				</td>
+				<td>
+					{{ board[12] }}
+				</td>
+				<td>
+					{{ board[13] }}
+				</td>
+				<td>
+					{{ board[14] }}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{{ board[6] }}
+				</td>
+				<td>
+					{{ board[7] }}
+				</td>
+				<td>
+					{{ board[8] }}
+				</td>
+				<td class="tdvs">
+					S
+				</td>
+				<td>
+					{{ board[15] }}
+				</td>
+				<td>
+					{{ board[16] }}
+				</td>
+				<td>
+					{{ board[17] }}
+				</td>
+			</tr>
+		</table>
+	</main>
+{% endblock %}

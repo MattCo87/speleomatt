@@ -45,6 +45,25 @@ class FormationRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findByFight($id_fight)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT formation_id
+            FROM formation_fight f
+            WHERE f.fight_id = :id_fight
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['id_fight' => $id_fight]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+
     // /**
     //  * @return Formation[] Returns an array of Formation objects
     //  */
