@@ -19,6 +19,7 @@ use App\Service\MCM;
 use Doctrine\Migrations\Configuration\EntityManager\ManagerRegistryEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 class PlayController extends AbstractController
 {
     /**

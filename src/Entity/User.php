@@ -59,6 +59,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $formations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Fight::class, inversedBy="users", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $fight;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -234,6 +240,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $formation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFight(): ?Fight
+    {
+        return $this->fight;
+    }
+
+    public function setFight(?Fight $fight): self
+    {
+        $this->fight = $fight;
 
         return $this;
     }

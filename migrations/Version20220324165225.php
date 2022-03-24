@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220322150836 extends AbstractMigration
+final class Version20220324165225 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -29,7 +29,7 @@ final class Version20220322150836 extends AbstractMigration
         $this->addSql('CREATE TABLE formation (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_404021BFA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE formation_fight (formation_id INT NOT NULL, fight_id INT NOT NULL, INDEX IDX_5721DA235200282E (formation_id), INDEX IDX_5721DA23AC6657E4 (fight_id), PRIMARY KEY(formation_id, fight_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE strategy (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, pseudo VARCHAR(255) NOT NULL, experience INT NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, fight_id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, pseudo VARCHAR(255) NOT NULL, experience INT NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), INDEX IDX_8D93D649AC6657E4 (fight_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, available_at DATETIME NOT NULL, delivered_at DATETIME DEFAULT NULL, INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE action_strategy ADD CONSTRAINT FK_C391358BB15F4BF6 FOREIGN KEY (actions_id) REFERENCES action (id)');
         $this->addSql('ALTER TABLE action_strategy ADD CONSTRAINT FK_C391358B529B93AD FOREIGN KEY (strategies_id) REFERENCES strategy (id)');
@@ -41,6 +41,7 @@ final class Version20220322150836 extends AbstractMigration
         $this->addSql('ALTER TABLE formation ADD CONSTRAINT FK_404021BFA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE formation_fight ADD CONSTRAINT FK_5721DA235200282E FOREIGN KEY (formation_id) REFERENCES formation (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE formation_fight ADD CONSTRAINT FK_5721DA23AC6657E4 FOREIGN KEY (fight_id) REFERENCES fight (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D649AC6657E4 FOREIGN KEY (fight_id) REFERENCES fight (id)');
     }
 
     public function down(Schema $schema): void
@@ -50,6 +51,7 @@ final class Version20220322150836 extends AbstractMigration
         $this->addSql('ALTER TABLE character_formation DROP FOREIGN KEY FK_C7108384C70F0E28');
         $this->addSql('ALTER TABLE character_strategy DROP FOREIGN KEY FK_4C47AC7CC70F0E28');
         $this->addSql('ALTER TABLE formation_fight DROP FOREIGN KEY FK_5721DA23AC6657E4');
+        $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D649AC6657E4');
         $this->addSql('ALTER TABLE character_formation DROP FOREIGN KEY FK_C71083843BF5B0C2');
         $this->addSql('ALTER TABLE formation_fight DROP FOREIGN KEY FK_5721DA235200282E');
         $this->addSql('ALTER TABLE action_strategy DROP FOREIGN KEY FK_C391358B529B93AD');
