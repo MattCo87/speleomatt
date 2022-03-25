@@ -18,6 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\MCM;
 use Doctrine\Migrations\Configuration\EntityManager\ManagerRegistryEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\FormationType;
 
 
 class PlayController extends AbstractController
@@ -25,9 +29,9 @@ class PlayController extends AbstractController
     /**
      * @Route("/play", name="app_play")
      */
-    public function index(FormationRepository $emf): Response
+    public function play(FormationRepository $emf): Response
     {
-        $fights = $this->getDoctrine()->getRepository(Fight::class)->findBy(['id' => 1]);
+        $fights = $this->getDoctrine()->getRepository(Fight::class)->findBy(['id' => 2]);
         //$fights = $emf->findByFight(1);
 
         $tabFormation = $fights[0]->getFormations();
@@ -103,5 +107,34 @@ class PlayController extends AbstractController
             'board' => $board,
         ]);
     }
+
+
+    /**
+     * @Route("/play/new", name="app_play_new")
+     */    
+    public function index(Request $request, ValidatorInterface $validator, EntityManagerInterface $manager): Response
+    {
+        // On crée une CharacterFormation
+        $characterFormation = new CharacterFormation();
+
+        //On crée le formulaire de création de CharacterFormation
+        $form = $this->createForm(FormationType::class, $characterFormation);
+        $form->handleRequest($request);
+        
+        // Action sur la validation du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On ajoute la CharacterFormation 
+            $manager->persist($characterFormation);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_play_new');
+        }
+        
+        return $this->render('formation/index.html.twig', [
+            'form' => $form->createView(),           
+        ]);
+    }
+
+
 
 }

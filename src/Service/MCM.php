@@ -263,7 +263,7 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
     public function getMotor(FormationRepository $doctrine, CharacterRepository $emc)
     {
         // Fonction personnelle dans le FormationRepository
-        $req_fight = $doctrine->findByFight(1);
+        $req_fight = $doctrine->findByFight(2);
 
 
     /* **************************************************************************************************************************
