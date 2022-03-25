@@ -5,9 +5,12 @@ namespace App\Controller;
 use App\Entity\Fight;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\FightRepository;
 use App\Security\UserAuthenticator;
 use DateTime;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +24,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(ManagerRegistry $emf, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -37,11 +40,14 @@ class RegistrationController extends AbstractController
             );
             $user->setExperience(1);
             $user->setRoles(['ROLE_USER']);
+            $var_createdat = new DateTime('now');
+            $user->setCreatedAt($var_createdat);
 
-            $var_fight = new Fight;
-            $var_fight->setCreatedat(new DateTime('now'));
-            $var_fight->setLog('Tutorial');
-            $user->setFight($var_fight->setCreatedat(new DateTime('now')));
+            $var_fight_repo = new FightRepository($emf);
+            $var_fight = $var_fight_repo->find(1);
+            
+            $user->setFight($var_fight);
+            
             
             $entityManager->persist($user);
             $entityManager->flush();

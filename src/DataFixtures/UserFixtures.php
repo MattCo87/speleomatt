@@ -22,10 +22,9 @@ implements OrderedFixtureInterface
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
         $this->encoder = $encoder;
-
     }
 
-    public function load(ObjectManager $manager) : void
+    public function load(ObjectManager $manager): void
     {
         $var_fight = new Fight();
         $var_fight->setLog("Tutorial");
@@ -37,6 +36,10 @@ implements OrderedFixtureInterface
             ->setPassword($this->encoder->encodePassword($admin, 'admin'))
             ->setRoles(['ROLE_ADMIN']);
 
+
+        $var_createdat = new DateTime('now');
+        $admin->setCreatedAt($var_createdat);
+
         $admin->setFight($var_fight->setCreatedat(new DateTime('now')))
             ->setExperience(1000);
 
@@ -44,13 +47,15 @@ implements OrderedFixtureInterface
 
         $manager->persist($admin);
 
-// ******************************************************* USER MATT
+        // ******************************************************* USER MATT
         $matt = new User();
         $matt->setPseudo('Lord Aixois')
             ->setEmail('87700a@gmail.com')
             ->setPassword($this->encoder->encodePassword($matt, 'matthieu'))
             ->setRoles(['ROLE_USER']);
 
+        $var_createdat = new DateTime('now');
+        $matt->setCreatedAt($var_createdat);
 
         $matt->setFight($var_fight->setCreatedat(new DateTime('now')))
             ->setExperience(1);
@@ -58,21 +63,23 @@ implements OrderedFixtureInterface
         $this->addReference('matt', $matt);
         $manager->persist($matt);
 
-// ******************************************************* USER KRIKRI
+        // ******************************************************* USER KRIKRI
         $krikri = new User();
         $krikri->setPseudo('Krikri')
             ->setEmail('87700k@gmail.com')
             ->setPassword($this->encoder->encodePassword($matt, 'krikri'))
             ->setRoles(['ROLE_USER']);
 
- 
+        $var_createdat = new DateTime('now');
+        $krikri->setCreatedAt($var_createdat);
+
         $krikri->setFight($var_fight->setCreatedat(new DateTime('now')))
             ->setExperience(1);
 
         $this->addReference('krikri', $krikri);
         $manager->persist($krikri);
 
-// ******************************************************* USER TEST
+        // ******************************************************* USER TEST
         $test = new User();
         $test->setPseudo('Test')
             ->setEmail('87700t@gmail.com')
@@ -81,6 +88,10 @@ implements OrderedFixtureInterface
 
         $test->setFight($var_fight->setCreatedat(new DateTime('now')))
             ->setExperience(1);
+
+
+        $var_createdat = new DateTime('now');
+        $test->setCreatedAt($var_createdat);
 
         $this->addReference('test', $test);
         $manager->persist($test);

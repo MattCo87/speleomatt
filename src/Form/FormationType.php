@@ -27,21 +27,21 @@ class FormationType extends AbstractType
                 'label' => 'Donne un nom à ton équipe '
             ))
 
-            /*
+            
             // On affiche la liste des Characters
             ->add('characters', EntityType::class, array(
                 'class' => Character::class,
                 'choice_label' => 'name',
             ))
-            */
-
+            
+/*
             // On affiche la liste des Characters
             ->add('characters', EntityType::class, [
                 'class' => Character::class,
                 'multiple' => true,
                 'expanded' => true,
             ])
-
+*/
             /*
             // On choisit sa localisation
             ->add('positionCharacter', ChoiceType::class, array(

@@ -65,6 +65,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $fight;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -252,6 +257,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFight(?Fight $fight): self
     {
         $this->fight = $fight;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

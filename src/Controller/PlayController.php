@@ -6,6 +6,7 @@ use App\Entity\Character;
 use App\Entity\CharacterFormation;
 use App\Entity\CharacterStrategy;
 use App\Entity\Fight;
+use App\Entity\Formation;
 use App\Entity\Strategy;
 use App\Repository\CharacterRepository;
 use App\Repository\FightRepository;
@@ -123,6 +124,9 @@ class PlayController extends AbstractController
         
         // Action sur la validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
+            $formation = new Formation;
+            
+            dd($form);
             // On ajoute la CharacterFormation 
             $manager->persist($characterFormation);
             $manager->flush();
