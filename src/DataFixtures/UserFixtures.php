@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Fight;
 use App\Entity\User;
-use app\Repository\FightRepository;
+use App\Repository\FightRepository;
 
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -36,7 +36,6 @@ implements OrderedFixtureInterface
             ->setPassword($this->encoder->encodePassword($admin, 'admin'))
             ->setRoles(['ROLE_ADMIN']);
 
-
         $var_createdat = new DateTime('now');
         $admin->setCreatedAt($var_createdat);
 
@@ -46,56 +45,6 @@ implements OrderedFixtureInterface
         $this->addReference('admin', $admin);
 
         $manager->persist($admin);
-
-        // ******************************************************* USER MATT
-        $matt = new User();
-        $matt->setPseudo('Lord Aixois')
-            ->setEmail('87700a@gmail.com')
-            ->setPassword($this->encoder->encodePassword($matt, 'matthieu'))
-            ->setRoles(['ROLE_USER']);
-
-        $var_createdat = new DateTime('now');
-        $matt->setCreatedAt($var_createdat);
-
-        $matt->setFight($var_fight->setCreatedat(new DateTime('now')))
-            ->setExperience(1);
-
-        $this->addReference('matt', $matt);
-        $manager->persist($matt);
-
-        // ******************************************************* USER KRIKRI
-        $krikri = new User();
-        $krikri->setPseudo('Krikri')
-            ->setEmail('87700k@gmail.com')
-            ->setPassword($this->encoder->encodePassword($matt, 'krikri'))
-            ->setRoles(['ROLE_USER']);
-
-        $var_createdat = new DateTime('now');
-        $krikri->setCreatedAt($var_createdat);
-
-        $krikri->setFight($var_fight->setCreatedat(new DateTime('now')))
-            ->setExperience(1);
-
-        $this->addReference('krikri', $krikri);
-        $manager->persist($krikri);
-
-        // ******************************************************* USER TEST
-        $test = new User();
-        $test->setPseudo('Test')
-            ->setEmail('87700t@gmail.com')
-            ->setPassword($this->encoder->encodePassword($test, 'test'))
-            ->setRoles(['ROLE_USER']);
-
-        $test->setFight($var_fight->setCreatedat(new DateTime('now')))
-            ->setExperience(1);
-
-
-        $var_createdat = new DateTime('now');
-        $test->setCreatedAt($var_createdat);
-
-        $this->addReference('test', $test);
-        $manager->persist($test);
-
         $manager->flush();
     }
 

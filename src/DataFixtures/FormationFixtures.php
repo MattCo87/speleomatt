@@ -2,12 +2,15 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Character;
 use App\Entity\CharacterFormation;
 use App\Entity\Formation;
+use App\Repository\CharacterRepository;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 class FormationFixtures
 extends Fixture
@@ -16,12 +19,10 @@ implements OrderedFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $tabFormation = [
-            ['Bersekers', 'admin'],
             ['Explorers', 'admin'],
-            ['Sneak team', 'admin'],
+            ['Bersekers', 'admin'],
             ['Snipers', 'admin'],
             ['ArcheoWinners', 'admin'],
-            ['Gunners', 'admin'],
             ['JYM', 'admin'],
         ];
 
@@ -41,34 +42,6 @@ implements OrderedFixtureInterface
 
         $manager->flush();
         unset($z, $a);
-
-        // ***************************************************************************************************************************
-        // ***************************************************************************************************************************
-        // On implémente les characterFormation de 'admin'
-
-        // Pour chaque formation
-        for ($j = 1; $j <= 7; $j++) {
-            $var_formation = 'formation' . $j;
-            for ($i = 14; $i <= 18; $i++) {
-                // Pour les 5 persos
-                $alea = rand(14, 18);
-                $var_character = 'character' . $alea;
-
-                $tabPositionCharacter = array('Devant', 'Milieu', 'Derrière');
-                $var_positionCharacter = array_rand($tabPositionCharacter, 1);
-                $var_positionCharacter = $tabPositionCharacter[$var_positionCharacter];
-
-                $characterFormation = new CharacterFormation();
-                $characterFormation->setCharacters($this->getReference($var_character))
-                    ->setFormations($this->getReference($var_formation))
-                    ->setPositionCharacter($var_positionCharacter);
-
-                $manager->persist($characterFormation);
-                $manager->flush();
-                unset($characterFormation);
-            }
-        }
-        // ******************************************************************************************************************************
 
 
     }

@@ -14,8 +14,10 @@ class FightFixtures
 extends Fixture
 implements OrderedFixtureInterface
 {
+
     public function load(ObjectManager $manager): void
     {
+
         $now = new DateTime('now');
         $tabFight = [
             ['Log du combat N°1', $now],
@@ -32,24 +34,12 @@ implements OrderedFixtureInterface
             $fight->setLog($a)
                 ->setCreatedat($b);
 
-            if ($z == 1) {
-                $fight->addFormation($this->getReference('formation5'));
-                $fight->addFormation($this->getReference('formation7'));
-            }
-            if ($z == 2) {
-                $fight->addFormation($this->getReference('formation5'));
-                $fight->addFormation($this->getReference('formation1'));
-            }
-            if ($z == 3) {
-                $fight->addFormation($this->getReference('formation5'));
-                $fight->addFormation($this->getReference('formation4'));
-            }
             $manager->persist($fight);
-            $this->addReference('fight' . $z, $fight);
         }
 
         $manager->flush();
         unset($z, $a, $b);
+
     }
 
     public function getOrder()

@@ -23,47 +23,23 @@ implements OrderedFixtureInterface
             ['Kaplopi', '1', '50', '70', '30', '50', 1, ''],
             ['Pifou', '1', '35', '70', '60', '50', 1, ''],
             ['Lovdisc', '1', '80', '30', '30', '50', 1, ''],
-            ['Rat des Mines', '1', '25', '25', '25', '25', 1, ''],
-            ['Ver Luisant', '1', '35', '35', '35', '35', 1, ''],
-            ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 1, ''],
-            ['Salamandre Enragée', '75', '75', '75', '75', '75', 1, ''],
-            ['The Boss', '1', '100', '100', '100', '100', 1, ''],
-        ];
-
-        $tabCharacMonster = [
-            ['Rat des Mines', '1', '25', '25', '25', '25', 0, 'admin'],
-            ['Ver Luisant', '1', '35', '35', '35', '35', 0, 'admin'],
-            ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 0, 'admin'],
-            ['Salamandre Enragée', '75', '75', '75', '75', '75', 0, 'admin'],
-            ['The Boss', '1', '100', '100', '100', '100', 0, 'admin'],
-        ];
-
-        $tabCharacMatt = [
-            ['Zabek', '1', '75', '25', '60', '60', 0, 'matt'],
-            ['Torti', '1', '60', '60', '50', '35', 0, 'matt'],
-            ['Ecclès', '1', '80', '15', '60', '80', 0, 'matt'],
-            ['Kaplopi', '1', '50', '70', '30', '50', 0, 'matt'],
-            ['Lovdisc', '1', '80', '30', '30', '50', 0, 'matt'],
-        ];
-
-        $tabCharacKrikri = [
-            ['Ecclès', '1', '80', '15', '60', '80', 0, 'krikri'],
-            ['Milly', '1', '50', '50', '50', '50', 0, 'krikri'],
-            ['Kaplopi', '1', '50', '70', '30', '50', 0, 'krikri'],
-            ['Pifou', '1', '35', '70', '60', '50', 0, 'krikri'],
-            ['Lovdisc', '1', '80', '30', '30', '50', 0, 'krikri'],
-        ];
-
-        $tabCharacTest = [
-            ['Lovdisc', '1', '80', '30', '30', '50', 0, 'test'],
-            ['Rat des Mines', '1', '25', '25', '25', '25', 0, 'test'],
-            ['Ver Luisant', '1', '35', '35', '35', '35', 0, 'test'],
-            ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 0, 'test'],
-            ['Salamandre Enragée', '75', '75', '75', '75', '75', 0, 'test'],
+            ['Holt', '1', '50', '70', '30', '70', 1, ''],
+// Character 10
+            ['Rat des Mines', '1', '25', '25', '25', '25', 1, 'admin'],
+            ['Ver Luisant', '1', '35', '35', '35', '35', 1, 'admin'],
+            ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 1, 'admin'],
+            ['Salamandre Enragée', '75', '75', '75', '75', '75', 1, 'admin'],
+            ['Mille-Pattes vénimeux', '100', '100', '100', '100', '100', 1, 'admin'],
+// Character 15
+            ['Splinter', '1', '100', '100', '100', '100', 1, 'admin'],
+            ['Vertigo', '1', '100', '100', '100', '100', 1, 'admin'],
+            ['Batboy', '1', '100', '100', '100', '100', 1, 'admin'],
+            ['KingLouis', '1', '100', '100', '100', '100', 1, 'admin'],
+            ['The Boss', '1', '100', '100', '100', '100', 1, 'admin'],
         ];
 
 
-        $tabCharac = array_merge($tabCharacModel, $tabCharacMonster, $tabCharacMatt, $tabCharacKrikri, $tabCharacTest);
+        $tabCharac = array_merge($tabCharacModel);
 
         $z = 0;
         foreach ($tabCharac as list($a, $b, $c, $d, $e, $f, $g, $h)) {

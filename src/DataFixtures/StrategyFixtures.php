@@ -20,6 +20,7 @@ implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
+        /*
         // On implémente les stratégies
         $tabStrategy = [
             ['TrankilUp'],
@@ -151,7 +152,7 @@ implements OrderedFixtureInterface
                 unset($characterStrategy);
             }
         }
-
+*/
     }
 
     public function getOrder()
