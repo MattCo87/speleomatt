@@ -57,7 +57,7 @@ class Character
     private $ispremade;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="characters")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="characters",cascade={"persist"})
      */
     private $user;
 
