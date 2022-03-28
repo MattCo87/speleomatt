@@ -115,6 +115,8 @@ class PlayController extends AbstractController
      */    
     public function index(Request $request, ValidatorInterface $validator, EntityManagerInterface $manager): Response
     {
+        $var_user = $this->getUser();
+        
         // On crée une CharacterFormation
         $characterFormation = new CharacterFormation();
 
@@ -126,7 +128,7 @@ class PlayController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $formation = new Formation;
             
-            dd($form);
+
             // On ajoute la CharacterFormation 
             $manager->persist($characterFormation);
             $manager->flush();

@@ -53,28 +53,29 @@ class RegistrationController extends AbstractController
 
             // On lui affecte une formation
             $var_formation = new Formation;
-            $var_formation->setName('SpeleoBoyz');
+            $var_formation_name = 'Speleo_' . $user->getPseudo();
+            $var_formation->setName($var_formation_name);
             $var_formation->setUser($user);
 
             // On affecte 5 personnages à l'utilisateur
             for ($i = 0; $i < 5; $i++) {
                 $var_character = new Character;
-                $alea = rand(1,9);
+                $alea = rand(1, 9);
                 $var_character_repo = new CharacterRepository($emf);
                 $clone = $var_character_repo->find($alea);
                 $var_character = clone $clone;
                 $var_character->setUser($user);
+                $var_character->setIspremade(0);
                 $entityManager->persist($var_character);
-              
             }
             $entityManager->flush();
-            
+
             $entityManager->persist($user);
             $entityManager->flush();
 
             $entityManager->persist($var_formation);
             $entityManager->flush();
-  
+
 
 
 

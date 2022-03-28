@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Character;
 use App\Entity\CharacterFormation;
 use App\Entity\Formation;
+use App\Repository\FormationRepository;
+use App\Repository\CharacterRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,18 +15,30 @@ use Symfony\Component\Console\Input\Input;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use Symfony\Component\Security\Core\Security as CoreSecurity;
 
 class FormationType extends AbstractType
 {
+    private $security;
+
+    public function __construct(CoreSecurity $security) {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-
             // On affiche la liste des Formations
-            ->add('formations', TextType::class, array(
-                'label' => 'Donne un nom à ton équipe '
+            ->add('formations', EntityType::class, array(
+                'class' => Formation::class,
+
+                'query_builder' => function (FormationRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.user = :val')
+                        ->setParameter('val', $this->security->getUser());
+                },
+
+                'choice_label' => 'name',
             ))
 
             
@@ -32,6 +46,12 @@ class FormationType extends AbstractType
             ->add('characters', EntityType::class, array(
                 'class' => Character::class,
                 'choice_label' => 'name',
+
+                'query_builder' => function (CharacterRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.user = :val')
+                        ->setParameter('val', $this->security->getUser());
+                },
             ))
             
 /*
@@ -41,8 +61,8 @@ class FormationType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-*/
-            /*
+
+            */
             // On choisit sa localisation
             ->add('positionCharacter', ChoiceType::class, array(
                 'choices'  => [
@@ -51,7 +71,7 @@ class FormationType extends AbstractType
                     'Derrière' => 2,
                 ],
             ))
-            */
+            
 
             // Bouton pour valider la création de la CharacterFormation
             ->add(
