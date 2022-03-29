@@ -34,6 +34,7 @@ class FormationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
             // On affiche la liste des Formations
             ->add('formations', EntityType::class, array(
@@ -54,17 +55,19 @@ class FormationType extends AbstractType
                 'class' => Character::class,
 
                 'query_builder' => function (CharacterRepository $er) {
-                    return $er->createQueryBuilder('c')
-
-                        ->where('c.user = :val')
-                        /*   
+                    $qb = $er->createQueryBuilder('c')
+                            ->where('c.user = :val')
+                        /*         
                         ->andWhere('c.id NOT IN ( SELECT f.characters_id FROM character_formation f)')
                         */
-                        ->setParameter('val', $this->security->getUser());
+                            ->setParameter('val', $this->security->getUser());
+                        
+                    return $qb->andWhere($qb->expr()->notIn('rl.request_id', $nots));
+
                 },
 
                 'choice_label' => 'name',
-                
+
             ))
 
             /*
