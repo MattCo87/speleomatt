@@ -62,7 +62,7 @@ class FormationType extends AbstractType
                         */
                             ->setParameter('val', $this->security->getUser());
                         
-                    return $qb->andWhere($qb->expr()->notIn('rl.request_id', $nots));
+                    return $qb->andWhere($qb->expr()->notIn('c.characterFormations', ));
 
                 },
 
