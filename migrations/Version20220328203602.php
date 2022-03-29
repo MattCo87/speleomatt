@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220325190230 extends AbstractMigration
+final class Version20220328203602 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,7 +23,7 @@ final class Version20220325190230 extends AbstractMigration
         $this->addSql('CREATE TABLE action (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, power INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE action_strategy (id INT AUTO_INCREMENT NOT NULL, actions_id INT DEFAULT NULL, strategies_id INT DEFAULT NULL, position_action VARCHAR(255) DEFAULT NULL, INDEX IDX_C391358BB15F4BF6 (actions_id), INDEX IDX_C391358B529B93AD (strategies_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `character` (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, level INT NOT NULL, attack INT NOT NULL, defense INT NOT NULL, resistance INT NOT NULL, speed INT NOT NULL, ispremade TINYINT(1) NOT NULL, INDEX IDX_937AB034A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE character_formation (id INT AUTO_INCREMENT NOT NULL, characters_id INT DEFAULT NULL, formations_id INT DEFAULT NULL, position_character VARCHAR(255) NOT NULL, INDEX IDX_C7108384C70F0E28 (characters_id), INDEX IDX_C71083843BF5B0C2 (formations_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE character_formation (id INT AUTO_INCREMENT NOT NULL, characters_id INT DEFAULT NULL, formations_id INT DEFAULT NULL, position_character VARCHAR(255) DEFAULT NULL, INDEX IDX_C7108384C70F0E28 (characters_id), INDEX IDX_C71083843BF5B0C2 (formations_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE character_strategy (id INT AUTO_INCREMENT NOT NULL, characters_id INT DEFAULT NULL, strategies_id INT DEFAULT NULL, position_strategie VARCHAR(255) DEFAULT NULL, INDEX IDX_4C47AC7CC70F0E28 (characters_id), INDEX IDX_4C47AC7C529B93AD (strategies_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE fight (id INT AUTO_INCREMENT NOT NULL, log LONGTEXT DEFAULT NULL, createdat DATE NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE formation (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_404021BFA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

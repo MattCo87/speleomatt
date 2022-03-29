@@ -53,21 +53,41 @@ class RegistrationController extends AbstractController
 
             // On lui affecte une formation
             $var_formation = new Formation;
-            $var_formation_name = 'Speleo_' . $user->getPseudo();
+            $var_formation_name = 'Speleo' . ucfirst(str_replace(' ', '', $user->getPseudo()));
             $var_formation->setName($var_formation_name);
             $var_formation->setUser($user);
 
+
             // On affecte 5 personnages à l'utilisateur
+            $var_character_repo = new CharacterRepository($emf);
+            $var_tab_character = $var_character_repo->findPremade();
+
             for ($i = 0; $i < 5; $i++) {
+
+                $alea = rand(0, 8);
+                //dump($var_tab_character[$alea]);
+                while (!(isset($var_tab_character[$alea]))) {
+                    $alea = rand(0, 8);
+                };
+
+                $clone = $var_tab_character[$alea];
+
                 $var_character = new Character;
-                $alea = rand(1, 9);
-                $var_character_repo = new CharacterRepository($emf);
-                $clone = $var_character_repo->find($alea);
-                $var_character = clone $clone;
-                $var_character->setUser($user);
-                $var_character->setIspremade(0);
+                $var_character->setName($clone['name'])
+                    ->setLevel($clone['level'])
+                    ->setAttack($clone['attack'])
+                    ->setDefense($clone['defense'])
+                    ->setResistance($clone['resistance'])
+                    ->setSpeed($clone['speed'])
+                    ->setUser($user)
+                    ->setIspremade(0)
+                ;
                 $entityManager->persist($var_character);
+
+                $tab_clone[] = $var_tab_character[$alea];
+                unset($var_tab_character[$alea]);
             }
+
             $entityManager->flush();
 
             $entityManager->persist($user);
@@ -76,10 +96,6 @@ class RegistrationController extends AbstractController
             $entityManager->persist($var_formation);
             $entityManager->flush();
 
-
-
-
-            // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
                 $user,

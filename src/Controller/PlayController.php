@@ -97,7 +97,7 @@ class PlayController extends AbstractController
      * @Route("/play/board", name="app_play_board")
      */
 
-    
+
     public function board(FormationRepository $var_fight, CharacterRepository $var_character): Response
     {
 
@@ -112,22 +112,24 @@ class PlayController extends AbstractController
 
     /**
      * @Route("/play/new", name="app_play_new")
-     */    
+     */
     public function index(Request $request, ValidatorInterface $validator, EntityManagerInterface $manager): Response
     {
         $var_user = $this->getUser();
-        
+
         // On crée une CharacterFormation
         $characterFormation = new CharacterFormation();
+
 
         //On crée le formulaire de création de CharacterFormation
         $form = $this->createForm(FormationType::class, $characterFormation);
         $form->handleRequest($request);
-        
+
         // Action sur la validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-            $formation = new Formation;
-            
+     
+             
+ 
 
             // On ajoute la CharacterFormation 
             $manager->persist($characterFormation);
@@ -135,12 +137,9 @@ class PlayController extends AbstractController
 
             return $this->redirectToRoute('app_play_new');
         }
-        
+
         return $this->render('formation/index.html.twig', [
-            'form' => $form->createView(),           
+            'form' => $form->createView(),
         ]);
     }
-
-
-
 }
