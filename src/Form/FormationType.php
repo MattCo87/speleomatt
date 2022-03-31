@@ -13,13 +13,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Console\Input\Input;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 use Symfony\Component\Security\Core\Security as CoreSecurity;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bridge\Doctrine\ManagerRegistry as DoctrineManagerRegistry;
+
 
 class FormationType extends AbstractType
 {
@@ -28,7 +27,7 @@ class FormationType extends AbstractType
     public function __construct(CoreSecurity $security, ManagerRegistry $registry)
     {
         $this->security = $security;
-        $this->doctrine = $registry;
+        $this->registry = $registry;
     }
 
 
@@ -52,18 +51,26 @@ class FormationType extends AbstractType
 
             // On affiche la liste des Characters
             ->add('characters', EntityType::class, array(
-                'class' => Character::class,
+                'class' => Character::class,             
+                
+                'query_builder' => function () {
+                    // Une sous requête affichant la liste des personnages appartenant à une formation
+                    $ecf = new CharacterFormationRepository($this->registry);
+                    $subQueryBuilder = $ecf->createQueryBuilder('cf');
+                    $subQuery = $subQueryBuilder
+                        ->select('IDENTITY(cf.characters)')            
+                    ;
 
-                'query_builder' => function (CharacterRepository $er) {
-                    $qb = $er->createQueryBuilder('c')
-                            ->where('c.user = :val')
-                        /*         
-                        ->andWhere('c.id NOT IN ( SELECT f.characters_id FROM character_formation f)')
-                        */
-                            ->setParameter('val', $this->security->getUser());
-                        
-                    return $qb->andWhere($qb->expr()->notIn('c.characterFormations', ));
-
+                    // Une requête retournant les personnages appartenants à l'utilisateur et qui ne sont pas dans une formation
+                    $er = new CharacterRepository($this->registry);
+                    $queryBuilder = $er->createQueryBuilder('c');
+                    $query = $queryBuilder
+                        ->where($queryBuilder->expr()->notIn('c.id', $subQuery->getDQL()))
+                        ->andwhere('c.user = :val')                       
+                        ->setParameter('val', $this->security->getUser())    
+                    ;
+                    
+                    return $query;           
                 },
 
                 'choice_label' => 'name',
@@ -88,7 +95,7 @@ class FormationType extends AbstractType
                 [
                     'label' => 'OK'
                 ],
-            );;
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
