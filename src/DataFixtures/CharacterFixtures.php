@@ -24,13 +24,17 @@ implements OrderedFixtureInterface
             ['Pifou', '1', '35', '70', '60', '50', 1, ''],
             ['Lovdisc', '1', '80', '30', '30', '50', 1, ''],
             ['Holt', '1', '50', '70', '30', '70', 1, ''],
-// Character 10
+            ['Piccolo', '1', '50', '70', '30', '50', 1, ''],
+            ['Slimgo', '1', '35', '70', '60', '50', 1, ''],
+            ['Kartboy', '1', '80', '30', '30', '50', 1, ''],
+            ['Hercule', '1', '50', '70', '30', '70', 1, ''],
+// Character 13
             ['Rat des Mines', '1', '25', '25', '25', '25', 1, 'admin'],
             ['Ver Luisant', '1', '35', '35', '35', '35', 1, 'admin'],
             ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 1, 'admin'],
             ['Salamandre Enragée', '75', '75', '75', '75', '75', 1, 'admin'],
             ['Mille-Pattes vénimeux', '100', '100', '100', '100', '100', 1, 'admin'],
-// Character 15
+// Character 19
             ['Splinter', '1', '100', '100', '100', '100', 1, 'admin'],
             ['Vertigo', '1', '100', '100', '100', '100', 1, 'admin'],
             ['Batboy', '1', '100', '100', '100', '100', 1, 'admin'],

@@ -6,7 +6,7 @@ use App\Entity\Character;
 use App\Entity\CharacterFormation;
 use App\Entity\Formation;
 use App\Repository\CharacterRepository;
-
+use App\Repository\FormationRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -36,6 +36,41 @@ implements OrderedFixtureInterface
                 $formation->setUser($this->getReference($b));
             }
 
+
+            switch ($z) {
+                case 1:
+                    $characterFormation = new CharacterFormation();
+                    $characterFormation->setCharacters($this->getReference('character14'));                  
+                    $characterFormation->setFormations($formation);
+
+                    break;
+                case 2:
+                    $characterFormation = new CharacterFormation();
+                    $characterFormation->setCharacters($this->getReference('character15'));                  
+                    $characterFormation->setFormations($formation);
+                    
+                    break;
+                case 3:
+                    $characterFormation = new CharacterFormation();
+                    $characterFormation->setCharacters($this->getReference('character16'));                  
+                    $characterFormation->setFormations($formation);                   
+                    break;
+                case 4:
+                    $characterFormation = new CharacterFormation();
+                    $characterFormation->setCharacters($this->getReference('character17'));                  
+                    $characterFormation->setFormations($formation);       
+                    break;
+                case 5:
+                    $characterFormation = new CharacterFormation();
+                    $characterFormation->setCharacters($this->getReference('character18'));                  
+                    $characterFormation->setFormations($formation);               
+                    break;
+                default:
+                    exit;
+                    break;
+
+            }
+            $manager->persist($characterFormation);
             $manager->persist($formation);
             $this->addReference('formation' . $z, $formation);
         }

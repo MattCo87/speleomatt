@@ -20,25 +20,25 @@ implements OrderedFixtureInterface
 
         $now = new DateTime('now');
         $tabFight = [
-            ['Log du combat N°1', $now],
-            ['Log du combat N°2', $now],
-            ['Log du combat N°3', $now],
-            ['Log du combat N°4', $now],
-            ['Log du combat N°5', $now],
+            ['Log du combat N°1', $now, 'formation1'],
+            ['Log du combat N°2', $now, 'formation2'],
+            ['Log du combat N°3', $now, 'formation3'],
+            ['Log du combat N°4', $now, 'formation4'],
+            ['Log du combat N°5', $now, 'formation5'],
         ];
 
         $z = 0;
-        foreach ($tabFight as list($a, $b)) {
+        foreach ($tabFight as list($a, $b, $c)) {
             $z++;
             $fight = new Fight();
             $fight->setLog($a)
-                ->setCreatedat($b);
-
+                ->setCreatedat($b)
+                ->addFormation($this->getReference($c));
             $manager->persist($fight);
         }
 
         $manager->flush();
-        unset($z, $a, $b);
+        unset($z, $a, $b, $c);
 
     }
 

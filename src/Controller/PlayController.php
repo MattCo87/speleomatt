@@ -27,85 +27,16 @@ use App\Form\FormationType;
 
 class PlayController extends AbstractController
 {
+
+
     /**
      * @Route("/play", name="app_play")
      */
-    public function play(FormationRepository $emf): Response
+    public function play(): Response
     {
-        $fights = $this->getDoctrine()->getRepository(Fight::class)->findBy(['id' => 2]);
-        //$fights = $emf->findByFight(1);
-
-        $tabFormation = $fights[0]->getFormations();
-
-        // Gestion de la formation challenger
-        // On récupére la formation
-        $formation0 = $tabFormation[0];
-        // On récupére les personnages de la formation
-        $characters0 = $formation0->getCharacterFormations();
-
-        // Pour chaque personnage
-        foreach ($characters0 as $character) {
-            // On récupére l'id du personnage
-            $characters = $character->getCharacters();
-            $var_characters = $characters->getId();
-            // On met dans un tableau les stratégies de chaque joueur
-            $strategies0[] = $this->getDoctrine()->getRepository(CharacterStrategy::class)->findBy(['characters' => $var_characters]);
-        }
-
-        /*
-        $i = 0;
-        foreach ($strategies0 as $var_strategy) {
-            $actions0 = $var_strategy[$i]->getStrategies();
-            foreach ($actions0 as $action) {
-                $actions = $action->getActions();
-                $var_actions = $actions->getId();
-                $tab[] = $var_actions;
-                $actions0[] = $this->getDoctrine()->getRepository(CharacterStrategy::class)->findBy(['actions' => $var_actions]);
-            }
-            $i++;
-        }
-        dd($tab);
-        */
-
-        // Gestion de la formation adverse
-        // On récupére la formation
-        $formation1 = $tabFormation[1];
-        // On récupére les personnages de la formation
-        $characters1 = $formation1->getCharacterFormations();
-
-        // Pour chaque personnage
-        foreach ($characters1 as $character) {
-            // On récupére l'id du personnage
-            $characters = $character->getCharacters();
-            $var_characters = $characters->getId();
-            // On met dans un tableau les stratégies de chaque joueur
-            $strategies1[] = $this->getDoctrine()->getRepository(CharacterStrategy::class)->findBy(['characters' => $var_characters]);
-        }
 
         return $this->render('play/index.html.twig', [
-            'fight' => $fights[0],
-            'formation0' => $formation0,
-            'formation1' => $formation1,
-            'characters0' => $characters0,
-            'characters1' => $characters1,
-            'strategies0' => $strategies0,
-            'strategies1' => $strategies1,
-        ]);
-    }
-
-    /**
-     * @Route("/play/board", name="app_play_board")
-     */
-
-
-    public function board(FormationRepository $var_fight, CharacterRepository $var_character): Response
-    {
-
-        $motor = new MCM;
-        $board = $motor->getMotor($var_fight, $var_character);
-
-        return $this->render('play/board.html.twig', [
-            'board' => $board,
+            //'board' => $board,
         ]);
     }
 
@@ -113,13 +44,34 @@ class PlayController extends AbstractController
     /**
      * @Route("/play/new", name="app_play_new")
      */
-    public function index(Request $request, ValidatorInterface $validator, EntityManagerInterface $manager): Response
+    public function index(CharacterRepository $emc, FormationRepository $emf, Request $request, ValidatorInterface $validator, EntityManagerInterface $manager): Response
     {
         $var_user = $this->getUser();
 
+        // On récupére toutes les formations de l'utilisateur courant
+        $var_formation = $emf->findByUser($this->getUser());
+        $var_id_formation = $emf->findIdByUser(2);
+
+        // On récupére tous les personnages de chaque formation
+        foreach ($var_id_formation as $formation) {
+            $tab_formation[] = $emc->findByFormation($formation['id']);
+        }
+
+        $i = 0;
+        foreach ($tab_formation as $temp_character) {
+            foreach ($temp_character as $character) {
+                //dd($character);
+                
+                $temp_var[$i][] = $emc->find($character['characters_id']);
+                //$tab_character[] = $emc->find($character['characters_id']);
+            }
+            $i++;
+        }
+        //dd($temp_var);
+
+
         // On crée une CharacterFormation
         $characterFormation = new CharacterFormation();
-
 
         //On crée le formulaire de création de CharacterFormation
         $form = $this->createForm(FormationType::class, $characterFormation);
@@ -127,10 +79,6 @@ class PlayController extends AbstractController
 
         // Action sur la validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-     
-             
- 
-
             // On ajoute la CharacterFormation 
             $manager->persist($characterFormation);
             $manager->flush();
@@ -140,6 +88,9 @@ class PlayController extends AbstractController
 
         return $this->render('formation/index.html.twig', [
             'form' => $form->createView(),
+            'formations' => $var_formation,
+            'tabformation0' => $temp_var[0],
+            'tabformation1' => $temp_var[1],
         ]);
     }
 }

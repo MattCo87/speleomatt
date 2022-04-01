@@ -55,19 +55,25 @@ class RegistrationController extends AbstractController
             $var_formation = new Formation;
             $var_formation_name = 'Speleo' . ucfirst(str_replace(' ', '', $user->getPseudo()));
             $var_formation->setName($var_formation_name);
-            $var_formation->setUser($user);
+            $var_formation->setUser($user);            
+            $entityManager->persist($var_formation);
 
+            // Puis une deuxième pour l'exemple
+            $var_formation2 = new Formation;
+            $var_formation2_name = ucfirst(str_replace(' ', '', $user->getPseudo())). "Boyz";
+            $var_formation2->setName($var_formation2_name);
+            $var_formation2->setUser($user);            
+            $entityManager->persist($var_formation2);
 
-            // On affecte 5 personnages à l'utilisateur
+            // On affecte 10 personnages à l'utilisateur
             $var_character_repo = new CharacterRepository($emf);
             $var_tab_character = $var_character_repo->findPremade();
 
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < 10; $i++) {
 
                 $alea = rand(0, 8);
-                //dump($var_tab_character[$alea]);
                 while (!(isset($var_tab_character[$alea]))) {
-                    $alea = rand(0, 8);
+                    $alea = rand(0, 12);
                 };
 
                 $clone = $var_tab_character[$alea];
@@ -88,13 +94,9 @@ class RegistrationController extends AbstractController
                 unset($var_tab_character[$alea]);
             }
 
-            $entityManager->flush();
-
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $entityManager->persist($var_formation);
-            $entityManager->flush();
 
 
             return $userAuthenticator->authenticateUser(

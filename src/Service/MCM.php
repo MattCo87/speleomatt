@@ -264,7 +264,7 @@ Fonction 'rlocate' : retourne un tableau représentant la localisation des perso
     {
         // Fonction personnelle dans le FormationRepository
         $req_fight = $doctrine->findByFight(2);
-
+dd($req_fight);
 
     /* **************************************************************************************************************************
     /* **************************************************************************************************************************
