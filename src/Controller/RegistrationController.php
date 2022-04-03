@@ -50,7 +50,7 @@ class RegistrationController extends AbstractController
             $var_fight_repo = new FightRepository($emf);
             $var_fight = $var_fight_repo->find(1);
             $user->setFight($var_fight);
-
+/*
             // On lui affecte une formation
             $var_formation = new Formation;
             $var_formation_name = 'Speleo' . ucfirst(str_replace(' ', '', $user->getPseudo()));
@@ -58,6 +58,7 @@ class RegistrationController extends AbstractController
             $var_formation->setUser($user);            
             $entityManager->persist($var_formation);
 
+*/
             // Puis une deuxième pour l'exemple
             $var_formation2 = new Formation;
             $var_formation2_name = ucfirst(str_replace(' ', '', $user->getPseudo())). "Boyz";
@@ -65,13 +66,14 @@ class RegistrationController extends AbstractController
             $var_formation2->setUser($user);            
             $entityManager->persist($var_formation2);
 
+
             // On affecte 10 personnages à l'utilisateur
             $var_character_repo = new CharacterRepository($emf);
             $var_tab_character = $var_character_repo->findPremade();
 
             for ($i = 0; $i < 10; $i++) {
 
-                $alea = rand(0, 8);
+                $alea = rand(0, 12);
                 while (!(isset($var_tab_character[$alea]))) {
                     $alea = rand(0, 12);
                 };
@@ -105,6 +107,8 @@ class RegistrationController extends AbstractController
                 $request
             );
         }
+
+        //$this->render('', ['progress' => $var_fight]);
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

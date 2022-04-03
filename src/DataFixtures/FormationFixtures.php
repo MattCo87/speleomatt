@@ -39,46 +39,60 @@ implements OrderedFixtureInterface
 
             switch ($z) {
                 case 1:
-                    $characterFormation = new CharacterFormation();
-                    $characterFormation->setCharacters($this->getReference('character14'));                  
-                    $characterFormation->setFormations($formation);
-
+                    for ($j = 1; $j < 6; $j++) {
+                        $characterFormation = new CharacterFormation();
+                        $characterFormation->setCharacters($this->getReference('character' . $j));
+                        $characterFormation->setFormations($formation);
+                        $manager->persist($characterFormation);
+                    }
                     break;
                 case 2:
-                    $characterFormation = new CharacterFormation();
-                    $characterFormation->setCharacters($this->getReference('character15'));                  
-                    $characterFormation->setFormations($formation);
-                    
+                    for ($j = 6; $j < 11; $j++) {
+                        $characterFormation = new CharacterFormation();
+                        $characterFormation->setCharacters($this->getReference('character' . $j));
+                        $characterFormation->setFormations($formation);
+                        $manager->persist($characterFormation);
+                        $manager->flush();
+                    }
                     break;
                 case 3:
-                    $characterFormation = new CharacterFormation();
-                    $characterFormation->setCharacters($this->getReference('character16'));                  
-                    $characterFormation->setFormations($formation);                   
+                    for ($j = 11; $j < 16; $j++) {
+                        $characterFormation = new CharacterFormation();
+                        $characterFormation->setCharacters($this->getReference('character' . $j));
+                        $characterFormation->setFormations($formation);
+                        $manager->persist($characterFormation);
+                        $manager->flush();
+                    }
                     break;
                 case 4:
-                    $characterFormation = new CharacterFormation();
-                    $characterFormation->setCharacters($this->getReference('character17'));                  
-                    $characterFormation->setFormations($formation);       
+                    for ($j = 16; $j < 21; $j++) {
+                        $characterFormation = new CharacterFormation();
+                        $characterFormation->setCharacters($this->getReference('character' . $j));
+                        $characterFormation->setFormations($formation);
+                        $manager->persist($characterFormation);
+                        $manager->flush();
+                    }
                     break;
                 case 5:
-                    $characterFormation = new CharacterFormation();
-                    $characterFormation->setCharacters($this->getReference('character18'));                  
-                    $characterFormation->setFormations($formation);               
+                    for ($j = 21; $j < 26; $j++) {
+                        $characterFormation = new CharacterFormation();
+                        $characterFormation->setCharacters($this->getReference('character' . $j));
+                        $characterFormation->setFormations($formation);
+                        $manager->persist($characterFormation);
+                        $manager->flush();
+                    }
                     break;
                 default:
                     exit;
                     break;
-
             }
-            $manager->persist($characterFormation);
+
             $manager->persist($formation);
             $this->addReference('formation' . $z, $formation);
         }
 
         $manager->flush();
         unset($z, $a);
-
-
     }
 
     public function getOrder()

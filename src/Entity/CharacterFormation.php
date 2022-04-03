@@ -23,7 +23,7 @@ class CharacterFormation
     private $characters;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Formation::class, inversedBy="characterFormations")
+     * @ORM\ManyToOne(targetEntity=Formation::class, inversedBy="characterFormations",cascade={"persist"})
      */
     private $formations;
 

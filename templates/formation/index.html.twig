@@ -23,43 +23,17 @@
 	<main>
 		<div>
 			<h1>FORMATION</h1>
-
 			<section>
 				{{ form_start(form) }}
 				{{ form_end(form) }}
 			</section>
 			<section>
 				<hr><hr>
-				<ul>
-					{% set i = 0 %}
-					{% for formation in formations %}
-						<li>
-							{{ formation.name }}
-
-							{% if i == 0 %}
-								<ul>
-									{% for tempformation in tabformation0 %}
-										<li>
-											{{ tempformation.name }}
-										</li>
-									{% endfor %}
-								</ul>
-							{% endif %}
-
-							{% if i == 1 %}
-								<ul>
-									{% for tempformation in tabformation1 %}
-										<li>
-											{{ tempformation.name }}
-										</li>
-									{% endfor %}
-								</ul>
-							{% endif %}
-							{% set i = i + 1 %}
-							<hr>
-						</li>
-					{% endfor %}
-				</ul>
+				{% for formation in tabformations %}
+					{{ formation.characters_id }}
+					<br>
+				{% endfor %}
+				<hr>
 			</section>
 		</div>
 	</main>

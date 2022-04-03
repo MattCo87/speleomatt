@@ -15,6 +15,37 @@ implements OrderedFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $tabCharacModel = [
+// Team Rat
+            ['Rat des Mines 1', '1', '25', '25', '25', '25', 0, 'admin'],
+            ['Rat des Mines 2', '1', '25', '25', '25', '25', 0, 'admin'],
+            ['Rat des Mines 3', '1', '25', '25', '25', '25', 0, 'admin'],
+            ['Rat des Mines 4', '1', '25', '25', '25', '25', 0, 'admin'],
+            ['Splinter', '1', '100', '100', '100', '100', 0, 'admin'],
+// Team Ver
+            ['Ver Luisant 1', '1', '35', '35', '35', '35', 0, 'admin'],
+            ['Ver Luisant 2', '1', '35', '35', '35', '35', 0, 'admin'],
+            ['Ver Luisant 3', '1', '35', '35', '35', '35', 0, 'admin'],
+            ['Ver Luisant 4', '1', '35', '35', '35', '35', 0, 'admin'],
+            ['Vertigo', '1', '100', '100', '100', '100', 0, 'admin'],
+// Team Chauve-souris
+            ['Chauve-souris Toxique 1', '50', '50', '50', '50', '50', 0, 'admin'],
+            ['Chauve-souris Toxique 2', '50', '50', '50', '50', '50', 0, 'admin'],
+            ['Chauve-souris Toxique 3', '50', '50', '50', '50', '50', 0, 'admin'],
+            ['Chauve-souris Toxique 4', '50', '50', '50', '50', '50', 0, 'admin'],
+            ['Batboy', '1', '100', '100', '100', '100', 0, 'admin'],
+// Team Salamandre
+            ['Salamandre Enragée 1', '75', '75', '75', '75', '75', 0, 'admin'],
+            ['Salamandre Enragée 2', '75', '75', '75', '75', '75', 0, 'admin'],
+            ['Salamandre Enragée 3', '75', '75', '75', '75', '75', 0, 'admin'],
+            ['Salamandre Enragée 4', '75', '75', '75', '75', '75', 0, 'admin'],
+            ['KingLouis', '1', '100', '100', '100', '100', 0, 'admin'],
+// Team Mille-Pattes
+            ['Mille-Pattes vénimeux 1', '100', '100', '100', '100', '100', 0, 'admin'],
+            ['Mille-Pattes vénimeux 2', '100', '100', '100', '100', '100', 0, 'admin'],
+            ['Mille-Pattes vénimeux 3', '100', '100', '100', '100', '100', 0, 'admin'],
+            ['Mille-Pattes vénimeux 4', '100', '100', '100', '100', '100', 0, 'admin'],
+            ['The Boss', '1', '100', '100', '100', '100', 0, 'admin'],
+// Character 26 
             ['Zabek', '1', '75', '25', '60', '60', 1, ''],
             ['Cradou', '1', '35', '80', '75', '25', 1, ''],
             ['Torti', '1', '60', '60', '50', '35', 1, ''],
@@ -28,20 +59,8 @@ implements OrderedFixtureInterface
             ['Slimgo', '1', '35', '70', '60', '50', 1, ''],
             ['Kartboy', '1', '80', '30', '30', '50', 1, ''],
             ['Hercule', '1', '50', '70', '30', '70', 1, ''],
-// Character 13
-            ['Rat des Mines', '1', '25', '25', '25', '25', 1, 'admin'],
-            ['Ver Luisant', '1', '35', '35', '35', '35', 1, 'admin'],
-            ['Chauve-souris Toxique', '50', '50', '50', '50', '50', 1, 'admin'],
-            ['Salamandre Enragée', '75', '75', '75', '75', '75', 1, 'admin'],
-            ['Mille-Pattes vénimeux', '100', '100', '100', '100', '100', 1, 'admin'],
-// Character 19
-            ['Splinter', '1', '100', '100', '100', '100', 1, 'admin'],
-            ['Vertigo', '1', '100', '100', '100', '100', 1, 'admin'],
-            ['Batboy', '1', '100', '100', '100', '100', 1, 'admin'],
-            ['KingLouis', '1', '100', '100', '100', '100', 1, 'admin'],
-            ['The Boss', '1', '100', '100', '100', '100', 1, 'admin'],
+// // Character 38            
         ];
-
 
         $tabCharac = array_merge($tabCharacModel);
 

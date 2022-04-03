@@ -18,6 +18,9 @@
 			<h1>Spéléonautes</h1>
 			<h2>Bienvenue à bord {{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }}</h2>
 		</div>
+		<section>
+			{% include 'home/progress.html.twig' %}
+		</section>
 	</main>
 	<footer>
 		<ul class="ulnav">
