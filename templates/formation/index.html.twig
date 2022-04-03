@@ -23,16 +23,28 @@
 	<main>
 		<div>
 			<h1>FORMATION</h1>
-			<section>
+			<h2>Compose ton équipe d'aventuriers</h2>
+			<section class="divcenter">
 				{{ form_start(form) }}
 				{{ form_end(form) }}
 			</section>
 			<section>
 				<hr><hr>
-				{% for formation in tabformations %}
-					{{ formation.characters_id }}
-					<br>
-				{% endfor %}
+			</section>
+			<section>
+				<h3>(ton équipe doit comporter 5 personnages)</h3>
+			</section>
+			<section>
+				<hr><hr>
+			</section>
+			<section>
+				<ul class="ulnav">
+					{% for formation in tabformations %}
+						<li>
+							{{ formation.characters_id }}
+						</li>
+					{% endfor %}
+				</ul>
 				<hr>
 			</section>
 		</div>

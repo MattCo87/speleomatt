@@ -1,1 +1,11 @@
-TOTO
+<ul class="ulnav">
+	{% for step in progress %}
+		{% if step.id == status.id %}
+			<li class="gris">
+		{% else %}
+			<li>
+		{% endif %}
+				{{ step.log }}
+			</li>
+	{% endfor %}
+</ul>

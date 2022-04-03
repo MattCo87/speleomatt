@@ -6,27 +6,58 @@
 {% block body %}
 	<header>
 		<ul class="ulnav">
-			<li><a href="{{path('app_home')}}" title="Accueil">Accueil</a></li>
-			<li><a href="{{path('app_play_new')}}" title="Formation">Formation</a></li>
-			<li><a href="{{path('app_play')}}" title="Jouer">Jouer</a></li>
-			<li><a href="#">Stats</a></li>
-			<li><a href="{{path('app_logout')}}" title="Déconnexion">Au revoir {{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }} !</a></li>
+			<li>
+				<a href="{{path('app_home')}}" title="Accueil">Accueil</a>
+			</li>
+			<li>
+				<a href="{{path('app_play_new')}}" title="Formation">Formation</a>
+			</li>
+			<li>
+				<a href="{{path('app_play')}}" title="Jouer">Jouer</a>
+			</li>
+			<li>
+				<a href="#">Stats</a>
+			</li>
+			<li>
+				<a href="{{path('app_logout')}}" title="Déconnexion">Au revoir
+					{{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }}
+					!</a>
+			</li>
 		</ul>
 	</header>
 	<main>
 		<div>
 			<h1>Spéléonautes</h1>
-			<h2>Bienvenue à bord {{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }}</h2>
+			<h2>Bienvenue à bord
+				{{ app.user.pseudo is not null ? app.user.pseudo : app.user.fullname }}</h2>
 		</div>
 		<section>
+			<h3>Voilà ta progression dans le gouffre</h3>
+		</section>
+		<section>
+			<hr><hr>
+		</section>
+		<section>
 			{% include 'home/progress.html.twig' %}
+		</section>
+		<section>
+			<hr><hr>
+		</section>
+		<section>
+			<h3><a href="{{path('app_play_new')}}" title="Formation">A la conquête !</a></h3>
 		</section>
 	</main>
 	<footer>
 		<ul class="ulnav">
-			<li><a href="#">Règles</a></li>
-			<li><a href="#">Mentions légales</a></li>
-			<li><a href="#">Qui sommes-nous?</a></li>
+			<li>
+				<a href="#">Règles</a>
+			</li>
+			<li>
+				<a href="#">Mentions légales</a>
+			</li>
+			<li>
+				<a href="#">Qui sommes-nous?</a>
+			</li>
 		</ul>
 	</footer>
 {% endblock %}

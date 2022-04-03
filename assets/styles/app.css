@@ -4,12 +4,17 @@ a {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     text-align: center;
 }
 
 header,
 footer {
+    background-color: grey;
+}
+
+.gris {
     background-color: grey;
 }
 
