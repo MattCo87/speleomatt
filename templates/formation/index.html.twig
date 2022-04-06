@@ -23,20 +23,22 @@
 	<main>
 		<div>
 			<h1>FORMATION</h1>
-			<h2>Compose ton équipe d'aventuriers</h2>
-			<section class="divcenter">
-				{{ form_start(form) }}
-				{{ form_end(form) }}
-			</section>
-			<section>
-				<hr><hr>
-			</section>
-			<section>
-				<h3>(ton équipe doit comporter 5 personnages)</h3>
-			</section>
-			<section>
-				<hr><hr>
-			</section>
+			{% if form is defined %}
+				<h2>Compose ton équipe d'aventuriers</h2>
+				<section class="divcenter">
+					{{ form_start(form) }}
+					{{ form_end(form) }}
+				</section>
+				<section>
+					<hr><hr>
+				</section>
+				<section>
+					<h3>(ton équipe doit comporter 5 personnages)</h3>
+				</section>
+				<section>
+					<hr><hr>
+				</section>
+			{% endif %}
 			<section>
 				<ul class="ulnav">
 					{% for formation in tabformations %}
@@ -47,6 +49,21 @@
 				</ul>
 				<hr>
 			</section>
-		</div>
-	</main>
-{% endblock %}
+			<section>
+				{% if teamOK == 1 %}
+					<div class="divcenter">
+						<p>
+							<h2>
+								Ton équipe est prête
+							</h2>
+						</p>
+						<a href='./' title="Jouer">
+							<h3>
+								GO !
+							</h3>
+						</a>
+					</section>
+				</div>
+			{% endif %}
+		</main>
+	{% endblock %}
