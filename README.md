@@ -1,9 +1,9 @@
 # speleomatt
 
-#Just pull the project
+Clone this
 
-#You must 'composer install'
+You must 'composer install'
 
-#Run it
+Run it
 
-#Register and go adventure !
+Register and go adventure !
