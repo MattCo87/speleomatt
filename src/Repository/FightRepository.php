@@ -44,9 +44,7 @@ class FightRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
-
-    
+  
 
     // /**
     //  * @return Fight[] Returns an array of Fight objects

@@ -45,17 +45,21 @@ class PlayController extends AbstractController
         $var_formation = $this->emf->findByUser($var_user);
         //dd($var_formation);
         // On récupére l'adversaire
-        $statusUser = $var_user->getfight();
-        
-        $versus = "'TO DO'";
-        //dd($statusUser);
-        //$versus = $this->emff->findVersus($statusUser);
-        //dd($versus);
+        $statusUser = $var_user->getFight()->getId();
+
+        // On récupére la formation adverse
+        $versus = $this->emf->findBy(['id' => $statusUser]);
+        $versus = $versus[0]->getName();
+        //dd($versus[0]->getName());
+        for ($i = 0; $i < 18; $i++) {
+            $board[$i] = "J" . $i;
+        }
 
 
-        return $this->render('play/index.html.twig', [
+        return $this->render('play/board.html.twig', [
             'userformation' => $var_formation,
             'challengerformation' => $versus,
+            'board' => $board,
         ]);
     }
 
